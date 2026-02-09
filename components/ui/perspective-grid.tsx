@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState, useMemo } from "react";
 import { cn } from "@/lib/utils";
+import { motion } from "framer-motion";
 
 interface PerspectiveGridProps {
     /** Additional CSS classes for the grid container */
@@ -43,7 +44,7 @@ export function PerspectiveGrid({
             }}
         >
             <div
-                className="absolute w-[80rem] aspect-square grid origin-center"
+                className="absolute w-[60rem] sm:w-[70rem] md:w-[80rem] aspect-square grid origin-center"
                 style={{
                     left: "50%",
                     top: "50%",
@@ -59,7 +60,7 @@ export function PerspectiveGrid({
                     tiles.map((_, i) => (
                         <div
                             key={i}
-                            className="tile min-h-[1px] min-w-[1px] border border-gray-300 dark:border-gray-700 bg-transparent transition-colors duration-[1500ms] hover:bg-green-500 hover:duration-0 dark:hover:bg-green-500"
+                            className="tile min-h-[1px] min-w-[1px] border border-gray-300 dark:border-gray-900 bg-transparent transition-colors duration-[1500ms] hover:bg-green-500 hover:duration-0 dark:hover:bg-green-500"
                         />
                     ))}
             </div>
@@ -69,7 +70,7 @@ export function PerspectiveGrid({
                 <div
                     className="absolute inset-0 pointer-events-none z-10"
                     style={{
-                        background: `radial-gradient(circle, transparent 50%, var(--fade-stop) ${fadeRadius}%)`,
+                        background: `radial-gradient(circle, transparent 30%, var(--fade-stop) ${fadeRadius}%)`,
                     }}
                 />
             )}
