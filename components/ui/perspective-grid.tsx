@@ -59,7 +59,7 @@ export function PerspectiveGrid({
                     tiles.map((_, i) => (
                         <div
                             key={i}
-                            className="tile min-h-[1px] min-w-[1px] border border-gray-300 dark:border-gray-700 bg-transparent transition-colors duration-[1500ms] hover:duration-0"
+                            className="tile min-h-[1px] min-w-[1px] border border-gray-300 dark:border-gray-700 bg-transparent transition-colors duration-[1500ms] hover:bg-green-500 hover:duration-0 dark:hover:bg-green-500"
                         />
                     ))}
             </div>
@@ -69,7 +69,7 @@ export function PerspectiveGrid({
                 <div
                     className="absolute inset-0 pointer-events-none z-10"
                     style={{
-                        background: `radial-gradient(circle, transparent 25%, var(--fade-stop) ${fadeRadius}%)`,
+                        background: `radial-gradient(circle, transparent 50%, var(--fade-stop) ${fadeRadius}%)`,
                     }}
                 />
             )}
