@@ -29,6 +29,12 @@ export function Hero() {
               Together
             </span>
           </h1>
+
+          <div className="mt-4 flex gap-4">
+            <button className="rounded-full bg-gray-900 px-8 py-3 text-sm font-semibold text-white shadow-sm transition-all hover:bg-gray-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900 dark:bg-gray-100 dark:text-gray-900 dark:hover:bg-gray-200 dark:focus-visible:outline-gray-100">
+              join Guild
+            </button>
+          </div>
         </motion.div>
       </div>
     </section>
