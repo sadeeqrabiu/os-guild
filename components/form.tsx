@@ -4,6 +4,7 @@ import { useState, useRef, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { animate } from "animejs";
 import Image from "next/image";
+import { supabase } from "@/lib/supabase";
 
 const STEPS = [
     { id: "intro", label: "" },
@@ -19,6 +20,8 @@ export function Form() {
     const [step, setStep] = useState<number>(0);
     const [values, setValues] = useState({ name: "", email: "", github: "" });
     const [submitted, setSubmitted] = useState(false);
+    const [submitting, setSubmitting] = useState(false);
+    const [error, setError] = useState<string | null>(null);
     const confettiRef = useRef<HTMLDivElement>(null);
 
     const current = STEPS[step];
@@ -43,7 +46,25 @@ export function Form() {
         }
     };
 
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
+        setSubmitting(true);
+        setError(null);
+
+        const { error: dbError } = await supabase
+            .from("JoinGuild")
+            .insert({
+                Name: values.name,
+                Email: values.email,
+                GitHub: values.github,
+            });
+
+        if (dbError) {
+            setError(dbError.message);
+            setSubmitting(false);
+            return;
+        }
+
+        setSubmitting(false);
         setSubmitted(true);
         // fire confetti burst
         if (confettiRef.current) {
@@ -196,11 +217,15 @@ export function Form() {
                             <div ref={confettiRef} className="relative mt-4">
                                 <button
                                     onClick={handleSubmit}
-                                    className="group relative overflow-hidden rounded-lg bg-indigo-600 px-8 py-4 text-sm font-bold text-white shadow-lg transition-all hover:scale-[1.03] hover:bg-indigo-500 hover:shadow-indigo-500/30 active:scale-[0.97]"
+                                    disabled={submitting}
+                                    className="group relative overflow-hidden rounded-lg bg-indigo-600 px-8 py-4 text-sm font-bold text-white shadow-lg transition-all hover:scale-[1.03] hover:bg-indigo-500 hover:shadow-indigo-500/30 active:scale-[0.97] disabled:pointer-events-none disabled:opacity-60"
                                 >
-                                    <span className="relative z-10">Submit Application</span>
+                                    <span className="relative z-10">{submitting ? "Submitting…" : "Submit Application"}</span>
                                     <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
                                 </button>
+                                {error && (
+                                    <p className="mt-2 text-sm text-red-500">{error}</p>
+                                )}
                             </div>
                         </motion.div>
                     )}
