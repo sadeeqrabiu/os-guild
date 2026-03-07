@@ -2,8 +2,31 @@
 
 import { PerspectiveGrid } from "@/components/ui/perspective-grid";
 import { motion } from "framer-motion";
+import { useRef } from "react";
+import { animate } from "animejs";
 
 export function Hero() {
+  const buttonRef = useRef<HTMLButtonElement>(null);
+
+  const handleMouseEnter = () => {
+    if (!buttonRef.current) return;
+    animate(buttonRef.current, {
+      scale: 1.05,
+      boxShadow: "0 0 25px rgba(139, 92, 246, 0.6)", // vibrant branding glow
+      duration: 400,
+      ease: "outExpo",
+    });
+  };
+
+  const handleMouseLeave = () => {
+    if (!buttonRef.current) return;
+    animate(buttonRef.current, {
+      scale: 1,
+      boxShadow: "0 0 0px rgba(139, 92, 246, 0)",
+      duration: 600,
+      ease: "outElastic(1, .8)",
+    });
+  };
   return (
     <section className="relative w-full h-screen overflow-hidden font-(family-name:--font-source-code-pro)">
       {/* Perspective Grid Background */}
@@ -31,7 +54,12 @@ export function Hero() {
           </h1>
 
           <div className="mt-4 flex gap-4">
-            <button className="rounded-full bg-gray-900 px-8 py-3 text-sm font-semibold text-white shadow-sm transition-all hover:bg-gray-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900 dark:bg-gray-100 dark:text-gray-900 dark:hover:bg-gray-200 dark:focus-visible:outline-gray-100">
+            <button
+              ref={buttonRef}
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
+              className="rounded-full bg-gray-900 px-8 py-3 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-gray-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900 dark:bg-gray-100 dark:text-gray-900 dark:hover:bg-gray-200 dark:focus-visible:outline-gray-100"
+            >
               join Guild
             </button>
           </div>
