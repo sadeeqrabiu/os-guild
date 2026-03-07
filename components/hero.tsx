@@ -4,15 +4,13 @@ import { PerspectiveGrid } from "@/components/ui/perspective-grid";
 import { motion } from "framer-motion";
 import { useRef, useState } from "react";
 import { animate } from "animejs";
+import { useRouter } from "next/navigation";
 
-interface HeroProps {
-  onJoin?: () => void;
-}
-
-export function Hero({ onJoin }: HeroProps) {
+export function Hero() {
   const buttonRef = useRef<HTMLButtonElement>(null);
   const portalRef = useRef<HTMLDivElement>(null);
   const [isJoining, setIsJoining] = useState(false);
+  const router = useRouter();
 
   const handleMouseEnter = () => {
     if (!buttonRef.current || isJoining) return;
@@ -55,7 +53,7 @@ export function Hero({ onJoin }: HeroProps) {
       duration: 800,
       ease: "inOutExpo",
       complete: () => {
-        if (onJoin) onJoin();
+        router.push("/form");
       }
     });
 
