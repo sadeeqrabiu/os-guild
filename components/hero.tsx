@@ -2,14 +2,20 @@
 
 import { PerspectiveGrid } from "@/components/ui/perspective-grid";
 import { motion } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { animate } from "animejs";
 
-export function Hero() {
+interface HeroProps {
+  onJoin?: () => void;
+}
+
+export function Hero({ onJoin }: HeroProps) {
   const buttonRef = useRef<HTMLButtonElement>(null);
+  const portalRef = useRef<HTMLDivElement>(null);
+  const [isJoining, setIsJoining] = useState(false);
 
   const handleMouseEnter = () => {
-    if (!buttonRef.current) return;
+    if (!buttonRef.current || isJoining) return;
     animate(buttonRef.current, {
       scale: 1.05,
       boxShadow: "0 0 25px rgba(139, 92, 246, 0.6)", // vibrant branding glow
@@ -19,12 +25,46 @@ export function Hero() {
   };
 
   const handleMouseLeave = () => {
-    if (!buttonRef.current) return;
+    if (!buttonRef.current || isJoining) return;
     animate(buttonRef.current, {
       scale: 1,
       boxShadow: "0 0 0px rgba(139, 92, 246, 0)",
       duration: 600,
       ease: "outElastic(1, .8)",
+    });
+  };
+
+  const handleClick = () => {
+    if (!buttonRef.current || !portalRef.current || isJoining) return;
+    setIsJoining(true);
+
+    // get button position for the portal origin
+    const rect = buttonRef.current.getBoundingClientRect();
+    const x = rect.left + rect.width / 2;
+    const y = rect.top + rect.height / 2;
+
+    // Reset portal position to center of button
+    portalRef.current.style.left = `${x}px`;
+    portalRef.current.style.top = `${y}px`;
+    portalRef.current.style.display = "block";
+
+    // Portal animation
+    animate(portalRef.current, {
+      scale: [0, 150], // expand massive enough to cover any screen
+      opacity: [1, 1],
+      duration: 800,
+      ease: "inOutExpo",
+      complete: () => {
+        if (onJoin) onJoin();
+      }
+    });
+
+    // Fade out hero content
+    animate(".hero-content", {
+      opacity: 0,
+      scale: 0.95,
+      duration: 400,
+      ease: "outExpo"
     });
   };
   return (
@@ -34,8 +74,14 @@ export function Hero() {
         <PerspectiveGrid gridSize={40} fadeRadius={95} />
       </div>
 
+      {/* Portal Element */}
+      <div
+        ref={portalRef}
+        className="pointer-events-none fixed z-50 hidden h-8 w-8 -translate-x-1/2 -translate-y-1/2 rounded-full bg-linear-to-br from-violet-600 to-indigo-900"
+      />
+
       {/* Hero Content */}
-      <div className="pointer-events-none relative z-20 flex h-full flex-col items-center justify-center px-6 text-center">
+      <div className="hero-content pointer-events-none relative z-20 flex h-full flex-col items-center justify-center px-6 text-center">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -58,6 +104,7 @@ export function Hero() {
               ref={buttonRef}
               onMouseEnter={handleMouseEnter}
               onMouseLeave={handleMouseLeave}
+              onClick={handleClick}
               className="rounded-full bg-gray-900 px-8 py-3 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-gray-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900 dark:bg-gray-100 dark:text-gray-900 dark:hover:bg-gray-200 dark:focus-visible:outline-gray-100"
             >
               join Guild
