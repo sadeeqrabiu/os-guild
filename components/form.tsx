@@ -50,6 +50,12 @@ export function Form() {
         setSubmitting(true);
         setError(null);
 
+        if (!supabase) {
+            setError("Supabase is not configured.");
+            setSubmitting(false);
+            return;
+        }
+
         const { error: dbError } = await supabase
             .from("JoinGuild")
             .insert({
