@@ -107,6 +107,12 @@ export function Hero() {
             >
               join Guild
             </button>
+            <button
+              onClick={() => router.push("/dashboard")}
+              className="rounded-full bg-transparent px-8 py-3 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors hover:bg-gray-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900 dark:text-gray-100 dark:ring-gray-700 dark:hover:bg-gray-800"
+            >
+              Dashboard
+            </button>
           </div>
         </motion.div>
       </div>
