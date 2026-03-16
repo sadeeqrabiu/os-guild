@@ -14,6 +14,21 @@ First, install dependencies:
 npm install
 ```
 
+Then, create your environment file:
+
+```bash
+cp .env.example .env.local
+```
+
+Configure Nostr Auth:
+
+```bash
+NOSTR_AUTH_APP_URL=http://localhost:4000
+NOSTR_AUTH_CHECK_URL=http://localhost:4000/auth/check
+```
+
+If `Nostr Auth` runs on another port or domain, update both values accordingly.
+
 Then, run the development server:
 
 ```bash
@@ -21,6 +36,23 @@ npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+## Route Protection
+
+`proxy.ts` to protect `/dashboard` with `Nostr Auth` as a forward-auth service.
+
+Flow:
+
+- Next.js proxy calls `NOSTR_AUTH_CHECK_URL`
+- cookies are forwarded to the auth service
+- `401` redirects the browser to `NOSTR_AUTH_APP_URL/?redirect=<current-url>`
+- `403` returns forbidden
+- `200` allows the request through
+- on successful checks, the proxy stores the returned auth headers in an `osg_nostr_session` cookie
+- on later requests, the proxy still checks `Nostr Auth` in the background so logout on the auth service is reflected here too
+- if the auth service returns `401` or `403`, the local session cookie is cleared
+
+On success, auth response headers are also copied into request headers with the `x-nostr-auth-` prefix so server components and route handlers can consume them safely.
 
 ## Tech Stack
 
