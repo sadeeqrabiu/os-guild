@@ -16,7 +16,7 @@ export function Hero() {
     if (!buttonRef.current || isJoining) return;
     animate(buttonRef.current, {
       scale: 1.05,
-      boxShadow: "0 0 25px rgba(139, 92, 246, 0.6)", // vibrant branding glow
+      boxShadow: "0 0 25px rgba(52, 211, 153, 0.6)", // vibrant emerald glow
       duration: 400,
       ease: "outExpo",
     });
@@ -26,7 +26,7 @@ export function Hero() {
     if (!buttonRef.current || isJoining) return;
     animate(buttonRef.current, {
       scale: 1,
-      boxShadow: "0 0 0px rgba(139, 92, 246, 0)",
+      boxShadow: "0 0 0px rgba(52, 211, 153, 0)",
       duration: 600,
       ease: "outElastic(1, .8)",
     });
@@ -75,7 +75,7 @@ export function Hero() {
       {/* Portal Element */}
       <div
         ref={portalRef}
-        className="pointer-events-none fixed z-50 hidden h-8 w-8 -translate-x-1/2 -translate-y-1/2 rounded-full bg-linear-to-br from-violet-600 to-indigo-900"
+        className="pointer-events-none fixed z-50 hidden h-8 w-8 -translate-x-1/2 -translate-y-1/2 rounded-full bg-linear-to-br from-emerald-500 to-emerald-900"
       />
 
       {/* Hero Content */}
@@ -107,12 +107,12 @@ export function Hero() {
             >
               join Guild
             </button>
-            <button
+            {/* <button
               onClick={() => router.push("/dashboard")}
               className="rounded-full bg-transparent px-8 py-3 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors hover:bg-gray-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900 dark:text-gray-100 dark:ring-gray-700 dark:hover:bg-gray-800"
             >
               Dashboard
-            </button>
+            </button> */}
           </div>
         </motion.div>
       </div>
