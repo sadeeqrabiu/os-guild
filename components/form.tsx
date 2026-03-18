@@ -118,7 +118,7 @@ export function Form() {
     };
 
     return (
-        <section className="relative flex h-screen w-full overflow-hidden bg-white font-(family-name:--font-source-code-pro) dark:bg-gray-950">
+        <section className="relative flex h-screen w-full overflow-hidden bg-gray-950 font-(family-name:--font-source-code-pro) text-gray-100">
             {/* Left Side – Form */}
             <div className="relative z-10 flex w-full flex-col justify-center px-10 sm:px-16 md:w-1/2 lg:px-24">
                 <AnimatePresence mode="wait">
@@ -142,7 +142,7 @@ export function Form() {
                             <div className="mt-4 flex items-center gap-3">
                                 <button
                                     onClick={next}
-                                    className="rounded-lg bg-indigo-600 px-6 py-3 text-sm font-bold text-white shadow-md transition-transform hover:scale-[1.03] hover:bg-indigo-500 active:scale-[0.97]"
+                                    className="rounded-lg bg-emerald-600 px-6 py-3 text-sm font-bold text-white shadow-md transition-transform hover:scale-[1.03] hover:bg-emerald-500 active:scale-[0.97]"
                                 >
                                     Start
                                 </button>
@@ -174,7 +174,7 @@ export function Form() {
                                 value={values[current.id as keyof typeof values]}
                                 onChange={(e) => setValue(current.id, e.target.value)}
                                 onKeyDown={handleKeyDown}
-                                className="w-full border-b-2 border-gray-200 bg-transparent py-3 text-lg text-gray-900 outline-none transition-colors placeholder:text-gray-300 focus:border-indigo-500 dark:border-gray-700 dark:text-gray-100 dark:placeholder:text-gray-600 dark:focus:border-indigo-400"
+                                className="w-full border-b-2 border-gray-200 bg-transparent py-3 text-lg text-gray-900 outline-none transition-colors placeholder:text-gray-300 focus:border-emerald-500 dark:border-gray-700 dark:text-gray-100 dark:placeholder:text-gray-600 dark:focus:border-emerald-400"
                             />
                             <div className="mt-4 flex items-center gap-3">
                                 <button
@@ -224,7 +224,7 @@ export function Form() {
                                 <button
                                     onClick={handleSubmit}
                                     disabled={submitting}
-                                    className="group relative overflow-hidden rounded-lg bg-indigo-600 px-8 py-4 text-sm font-bold text-white shadow-lg transition-all hover:scale-[1.03] hover:bg-indigo-500 hover:shadow-indigo-500/30 active:scale-[0.97] disabled:pointer-events-none disabled:opacity-60"
+                                    className="group relative overflow-hidden rounded-lg bg-emerald-600 px-8 py-4 text-sm font-bold text-white shadow-lg transition-all hover:scale-[1.03] hover:bg-emerald-500 hover:shadow-emerald-500/30 active:scale-[0.97] disabled:pointer-events-none disabled:opacity-60"
                                 >
                                     <span className="relative z-10">{submitting ? "Submitting…" : "Submit Application"}</span>
                                     <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
@@ -250,8 +250,39 @@ export function Form() {
                                 Welcome to the Guild!
                             </h2>
                             <p className="text-sm text-gray-500 dark:text-gray-400">
-                                Your application has been sent. We&apos;ll be in touch at <strong className="text-indigo-600 dark:text-indigo-400">info@osguild.dev</strong>
+                                Your application has been sent. We&apos;ll be in touch at <strong className="text-emerald-600 dark:text-emerald-400">info@osguild.dev</strong>
                             </p>
+
+                            <div className="mt-8 w-full border-[3px] border-black bg-[#0d1117] p-6 shadow-[6px_6px_0px_0px_#238636]">
+                                <h3 className="mb-2 text-xl font-black text-white">Join the Community</h3>
+                                <p className="mb-6 text-sm text-[#8b949e]">
+                                    Don't wait for the email! Jump into our Discord server and start learning today.
+                                </p>
+                                <a
+                                    href="https://discord.gg/YbCSFxb3WV"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="discord-btn block w-full border-[3px] border-black bg-[#238636] py-4 text-center text-lg font-black text-white shadow-[4px_4px_0px_0px_#000] transition-colors"
+                                    onMouseEnter={(e) => {
+                                        animate(e.currentTarget, {
+                                            scale: 1.02,
+                                            boxShadow: '0 0 20px rgba(57, 211, 83, 0.8)',
+                                            duration: 400,
+                                            ease: 'outExpo'
+                                        });
+                                    }}
+                                    onMouseLeave={(e) => {
+                                        animate(e.currentTarget, {
+                                            scale: 1,
+                                            boxShadow: '4px 4px 0px 0px #000',
+                                            duration: 600,
+                                            ease: 'outElastic(1, .8)'
+                                        });
+                                    }}
+                                >
+                                    JOIN OSGUILD DISCORD
+                                </a>
+                            </div>
                         </motion.div>
                     )}
                 </AnimatePresence>
