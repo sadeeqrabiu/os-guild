@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { useRef, useState } from "react";
 import { animate } from "animejs";
 import { useRouter } from "next/navigation";
+import { ArrowRight } from "lucide-react";
 
 export function Hero() {
   const buttonRef = useRef<HTMLButtonElement>(null);
@@ -16,9 +17,10 @@ export function Hero() {
     if (!buttonRef.current || isJoining) return;
     animate(buttonRef.current, {
       scale: 1.05,
-      boxShadow: "0 0 25px rgba(52, 211, 153, 0.6)", // vibrant emerald glow
-      duration: 400,
-      ease: "outExpo",
+      rotate: "2deg",
+      boxShadow: "8px 8px 0px 0px #000",
+      duration: 300,
+      easing: "easeOutQuad",
     });
   };
 
@@ -26,9 +28,10 @@ export function Hero() {
     if (!buttonRef.current || isJoining) return;
     animate(buttonRef.current, {
       scale: 1,
-      boxShadow: "0 0 0px rgba(52, 211, 153, 0)",
-      duration: 600,
-      ease: "outElastic(1, .8)",
+      rotate: "0deg",
+      boxShadow: "4px 4px 0px 0px #000",
+      duration: 300,
+      easing: "easeOutQuad",
     });
   };
 
@@ -66,16 +69,16 @@ export function Hero() {
     });
   };
   return (
-    <section className="relative w-full h-screen overflow-hidden font-(family-name:--font-source-code-pro)">
+    <section className="relative w-screen h-screen shrink-0 snap-center overflow-hidden bg-[#010409]">
       {/* Perspective Grid Background */}
-      <div className="absolute inset-0">
+      <div className="absolute inset-0 opacity-40">
         <PerspectiveGrid gridSize={40} fadeRadius={95} />
       </div>
 
       {/* Portal Element */}
       <div
         ref={portalRef}
-        className="pointer-events-none fixed z-50 hidden h-8 w-8 -translate-x-1/2 -translate-y-1/2 rounded-full bg-linear-to-br from-emerald-500 to-emerald-900"
+        className="pointer-events-none fixed z-50 hidden h-8 w-8 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#39d353] border-[3px] border-black"
       />
 
       {/* Hero Content */}
@@ -84,38 +87,48 @@ export function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="pointer-events-auto flex flex-col items-center gap-6"
+          className="pointer-events-auto flex flex-col items-center gap-8"
         >
-          <span className="inline-block rounded-full border border-gray-200 bg-white/80 px-4 py-1.5 text-sm font-medium text-gray-700 backdrop-blur-sm dark:border-gray-700 dark:bg-black/60 dark:text-gray-300">
-            .os guild
+          <span className="inline-block border-[3px] border-black bg-[#161b22] px-4 py-2 font-mono text-sm font-bold uppercase tracking-wider text-[#39d353] shadow-[4px_4px_0px_0px_#000]">
+            .OS GUILD
           </span>
 
-          <h1 className="max-w-3xl text-3xl font-bold leading-tight tracking-tight text-gray-950 dark:text-gray-400 sm:text-4xl md:text-5xl">
-            Build Open Source,{" "}
-            <span className="bg-linear-to-r from-gray-500 via-gray-400 to-gray-600 bg-clip-text text-transparent dark:from-gray-300 dark:via-gray-500 dark:to-gray-700">
+          <h1 className="max-w-4xl text-5xl font-black uppercase leading-none tracking-tighter text-white sm:text-6xl md:text-7xl">
+            Build Open Source<br/>
+            <span className="inline-block -rotate-2 mt-4 border-[4px] border-black bg-[#39d353] px-6 py-2 text-black shadow-[8px_8px_0px_0px_#000]">
               Together
             </span>
           </h1>
 
-          <div className="mt-4 flex gap-4">
+          <div className="mt-8 flex flex-col sm:flex-row gap-4">
             <button
               ref={buttonRef}
               onMouseEnter={handleMouseEnter}
               onMouseLeave={handleMouseLeave}
               onClick={handleClick}
-              className="rounded-full bg-gray-900 px-8 py-3 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-gray-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900 dark:bg-gray-100 dark:text-gray-900 dark:hover:bg-gray-200 dark:focus-visible:outline-gray-100"
+              className="block bg-[#39d353] px-8 py-3 text-base font-black uppercase text-black shadow-[4px_4px_0px_0px_#000] border-[3px] border-black transition-colors hover:bg-[#238636]"
             >
-              join Guild
+              Join Guild
             </button>
-            {/* <button
+            <button
               onClick={() => router.push("/dashboard")}
-              className="rounded-full bg-transparent px-8 py-3 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors hover:bg-gray-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900 dark:text-gray-100 dark:ring-gray-700 dark:hover:bg-gray-800"
+              className="block bg-[#161b22] px-8 py-3 text-base font-black uppercase text-white shadow-[4px_4px_0px_0px_#000] border-[3px] border-black transition-transform hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_#39d353] hover:border-[#39d353]"
             >
               Dashboard
-            </button> */}
+            </button>
           </div>
         </motion.div>
       </div>
+
+      {/* Blinking Scroll Arrow */}
+      <button 
+        onClick={() => document.querySelector('main')?.scrollBy({ left: window.innerWidth, behavior: 'smooth' })}
+        className="absolute right-8 bottom-1/2 translate-y-1/2 flex flex-col items-center gap-4 animate-pulse text-[#39d353] hover:text-white transition-colors cursor-pointer border-none bg-transparent"
+        aria-label="Scroll to Workshop"
+      >
+        <span className="font-mono text-sm font-bold uppercase rotate-90 tracking-widest whitespace-nowrap mb-6">Scroll</span>
+        <ArrowRight className="w-8 h-8" />
+      </button>
     </section>
   );
 }
