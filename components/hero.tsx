@@ -110,12 +110,12 @@ export function Hero() {
             >
               Join Guild
             </button>
-            <button
+            {/* <button
               onClick={() => router.push("/dashboard")}
               className="block bg-[#161b22] px-8 py-3 text-base font-black uppercase text-white shadow-[4px_4px_0px_0px_#000] border-[3px] border-black transition-transform hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_#39d353] hover:border-[#39d353]"
             >
               Dashboard
-            </button>
+            </button> */}
           </div>
         </motion.div>
       </div>
