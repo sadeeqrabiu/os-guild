@@ -119,6 +119,16 @@ export function Workshop() {
           </div>
 
           <div className="animate-item w-full md:w-1/3 flex flex-col gap-6 mt-4 md:mt-0">
+            {/* Mobile-only Back Button above Line Up */}
+            <button
+              onClick={() => document.querySelector('main')?.scrollBy({ left: -window.innerWidth, behavior: 'smooth' })}
+              className="flex md:hidden flex-row items-center justify-start gap-3 w-fit animate-pulse text-[#39d353] hover:text-white transition-colors cursor-pointer border-none bg-transparent mb-2"
+              aria-label="Scroll back to Hero"
+            >
+              <ArrowLeft className="w-8 h-8" />
+              <span className="font-mono text-xl font-bold uppercase tracking-widest whitespace-nowrap">Back</span>
+            </button>
+
             <div className="inline-block border-b-[4px] border-[#39d353] pb-2">
               <h3 className="text-3xl font-black text-white uppercase tracking-tighter">
                 Line Up
@@ -142,10 +152,10 @@ export function Workshop() {
         </div>
       </div>
 
-      {/* Blinking Scroll Back Arrow */}
+      {/* Blinking Scroll Back Arrow - Desktop Only */}
       <button
         onClick={() => document.querySelector('main')?.scrollBy({ left: -window.innerWidth, behavior: 'smooth' })}
-        className="absolute left-4 bottom-8 md:bottom-1/2 md:left-8 md:translate-y-1/2 flex flex-col items-center gap-4 animate-pulse text-[#39d353] hover:text-white transition-colors cursor-pointer border-none bg-transparent"
+        className="hidden md:flex absolute left-8 bottom-1/2 translate-y-1/2 flex-col items-center gap-4 animate-pulse text-[#39d353] hover:text-white transition-colors cursor-pointer border-none bg-transparent"
         aria-label="Scroll back to Hero"
       >
         <ArrowLeft className="w-8 h-8" />
