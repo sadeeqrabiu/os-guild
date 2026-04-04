@@ -94,7 +94,7 @@ export function Hero() {
           </span>
 
           <h1 className="max-w-4xl text-5xl font-black uppercase leading-none tracking-tighter text-white sm:text-6xl md:text-7xl">
-            Build Open Source<br/>
+            Build Open Source<br />
             <span className="inline-block -rotate-2 mt-4 border-[4px] border-black bg-[#39d353] px-6 py-2 text-black shadow-[8px_8px_0px_0px_#000]">
               Together
             </span>
@@ -121,12 +121,12 @@ export function Hero() {
       </div>
 
       {/* Blinking Scroll Arrow */}
-      <button 
+      <button
         onClick={() => document.querySelector('main')?.scrollBy({ left: window.innerWidth, behavior: 'smooth' })}
-        className="absolute right-8 bottom-1/2 translate-y-1/2 flex flex-col items-center gap-4 animate-pulse text-[#39d353] hover:text-white transition-colors cursor-pointer border-none bg-transparent"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 md:bottom-1/2 md:translate-y-1/2 md:left-auto md:-translate-x-0 md:right-8 flex flex-row md:flex-col items-center gap-2 md:gap-4 animate-pulse text-[#39d353] hover:text-white transition-colors cursor-pointer border-none bg-transparent"
         aria-label="Scroll to Workshop"
       >
-        <span className="font-mono text-sm font-bold uppercase rotate-90 tracking-widest whitespace-nowrap mb-6">Scroll</span>
+        <span className="font-mono text-sm font-bold uppercase md:rotate-90 tracking-widest whitespace-nowrap md:mb-6">Scroll</span>
         <ArrowRight className="w-8 h-8" />
       </button>
     </section>

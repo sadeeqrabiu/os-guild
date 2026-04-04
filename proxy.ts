@@ -98,9 +98,12 @@ export async function proxy(request: NextRequest) {
   }
 
   if (!response.ok) {
+    console.log(response);
+
     return new NextResponse("Authentication service unavailable", {
       status: 502,
     });
+
   }
 
   const identity = collectIdentityHeaders(response);
