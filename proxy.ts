@@ -54,6 +54,18 @@ function applyIdentityHeaders(
 }
 
 export async function proxy(request: NextRequest) {
+  // Check if we already have a valid local session cookie before hammering the auth server
+  const sessionCookie = request.cookies.get(SESSION_COOKIE_NAME)?.value;
+  if (sessionCookie) {
+    try {
+      const identity = JSON.parse(sessionCookie);
+      // Already signed in to nostr locally, remain in dashboard!
+      return applyIdentityHeaders(request, identity);
+    } catch (e) {
+      console.warn("Invalid local session cookie, proceeding to check auth server");
+    }
+  }
+
   const checkURL = AUTH_CHECK_URL?.trim();
   if (!checkURL) {
     throw new Error(
@@ -98,9 +110,12 @@ export async function proxy(request: NextRequest) {
   }
 
   if (!response.ok) {
+    console.log(response);
+
     return new NextResponse("Authentication service unavailable", {
       status: 502,
     });
+
   }
 
   const identity = collectIdentityHeaders(response);
