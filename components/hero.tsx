@@ -2,16 +2,32 @@
 
 import { PerspectiveGrid } from "@/components/ui/perspective-grid";
 import { motion } from "framer-motion";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { animate } from "animejs";
 import { useRouter } from "next/navigation";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Video } from "lucide-react";
 
 export function Hero() {
   const buttonRef = useRef<HTMLButtonElement>(null);
   const portalRef = useRef<HTMLDivElement>(null);
   const [isJoining, setIsJoining] = useState(false);
+  const [isMeetingLive, setIsMeetingLive] = useState(false);
   const router = useRouter();
+
+  // Show "Join Meeting" only during Apr 15, 2026 5:00 PM – 6:30 PM WAT (UTC+1)
+  useEffect(() => {
+    const MEETING_START = new Date("2026-04-15T17:00:00+01:00").getTime();
+    const MEETING_END = new Date("2026-04-15T18:30:00+01:00").getTime();
+
+    const check = () => {
+      const now = Date.now();
+      setIsMeetingLive(now >= MEETING_START && now <= MEETING_END);
+    };
+
+    check();
+    const interval = setInterval(check, 30_000); // re-check every 30s
+    return () => clearInterval(interval);
+  }, []);
 
   const handleMouseEnter = () => {
     if (!buttonRef.current || isJoining) return;
@@ -110,12 +126,25 @@ export function Hero() {
             >
               Join Guild
             </button>
-            {/* <button
-              onClick={() => router.push("/dashboard")}
-              className="block bg-[#161b22] px-8 py-3 text-base font-black uppercase text-white shadow-[4px_4px_0px_0px_#000] border-[3px] border-black transition-transform hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_#39d353] hover:border-[#39d353]"
-            >
-              Dashboard
-            </button> */}
+
+            {isMeetingLive && (
+              <button
+                onClick={() => {
+                  // Scroll to workshop section, then trigger the meeting
+                  const main = document.querySelector('main');
+                  main?.scrollBy({ left: window.innerWidth, behavior: 'smooth' });
+                  // Dispatch a custom event that Workshop listens for
+                  setTimeout(() => {
+                    window.dispatchEvent(new CustomEvent('open-jitsi-meeting'));
+                  }, 800);
+                }}
+                className="group relative flex items-center gap-2 px-8 py-3 text-base font-black uppercase text-white border-[3px] border-[#f85149] bg-[#0d1117] shadow-[4px_4px_0px_0px_#000] transition-all hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_#f85149] animate-[glow_2s_ease-in-out_infinite]"
+              >
+                <span className="absolute inset-0 bg-[#f85149]/10 opacity-0 group-hover:opacity-100 transition-opacity" />
+                <Video className="h-5 w-5 text-[#f85149] group-hover:text-white transition-colors" />
+                <span className="relative">Join Meeting</span>
+              </button>
+            )}
           </div>
         </motion.div>
       </div>
