@@ -2,9 +2,10 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import { animate, stagger } from "animejs";
-import { ArrowLeft, Video } from "lucide-react";
+import { ArrowLeft, Video, CalendarDays } from "lucide-react";
 import Image from "next/image";
 import dynamic from "next/dynamic";
+import Link from "next/link";
 import SadiqAvatar from "@/app/assets/Sadiq.jpg";
 import MegasleyAvatar from "@/app/assets/Megasley.png";
 import BrunoAvatar from "@/app/assets/Bruno.png";
@@ -20,6 +21,7 @@ const JitsiMeetingEmbed = dynamic(
 export function Workshop() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [showMeeting, setShowMeeting] = useState(false);
+  const [isMeetingLive, setIsMeetingLive] = useState(false);
 
   useEffect(() => {
     // Anime.js animation setup for entrance
@@ -40,6 +42,21 @@ export function Workshop() {
     const handler = () => setShowMeeting(true);
     window.addEventListener("open-jitsi-meeting", handler);
     return () => window.removeEventListener("open-jitsi-meeting", handler);
+  }, []);
+
+  // Show meeting button only during Apr 15, 2026 5:00 PM – 6:30 PM WAT (UTC+1)
+  useEffect(() => {
+    const MEETING_START = new Date("2026-04-15T17:00:00+01:00").getTime();
+    const MEETING_END = new Date("2026-04-15T18:30:00+01:00").getTime();
+
+    const check = () => {
+      const now = Date.now();
+      setIsMeetingLive(now >= MEETING_START && now <= MEETING_END);
+    };
+
+    check();
+    const interval = setInterval(check, 30_000);
+    return () => clearInterval(interval);
   }, []);
 
   const handleButtonHover = (e: React.MouseEvent<HTMLElement>) => {
@@ -77,8 +94,8 @@ export function Workshop() {
     handleButtonHover(e);
   };
 
-  // When meeting is active, show Jitsi full-section overlay
-  if (showMeeting) {
+  // When meeting is active and within the live window, show Jitsi full-section overlay
+  if (showMeeting && isMeetingLive) {
     return (
       <section className="relative w-screen h-screen shrink-0 snap-center flex flex-col bg-[#010409] border-l-[3px] border-black border-dashed overflow-hidden">
         {/* Jitsi Meeting takes over the workshop section */}
@@ -133,9 +150,9 @@ export function Workshop() {
               <div className="bg-[#161b22] border-[3px] border-black p-4 md:p-5 shadow-[4px_4px_0px_0px_#000] md:shadow-[6px_6px_0px_0px_#000] transform hover:-translate-y-1 transition-transform">
                 <div>
                   <p className="text-xs font-black uppercase text-[#8b949e] mb-1">Type</p>
-                  <p className="text-lg md:text-xl font-black text-white uppercase mb-2">Build Session</p>
+                  <p className="text-lg md:text-xl font-black text-white uppercase mb-2">Expert Panel</p>
                 </div>
-                <p className="text-xs md:text-sm font-bold border-t-2 border-black/50 border-dashed pt-2 mt-2 text-[#c9d1d9]">Intensive & Hands-on</p>
+                <p className="text-xs md:text-sm font-bold border-t-2 border-black/50 border-dashed pt-2 mt-2 text-[#c9d1d9]">Talks & Discussion</p>
               </div>
             </div>
 
@@ -154,18 +171,33 @@ export function Workshop() {
                 Sign Up For Workshop
               </a>
 
-              <button
-                onClick={() => setShowMeeting(true)}
-                onMouseEnter={handleButtonHover}
-                onMouseLeave={handleButtonLeave}
-                onMouseDown={handleButtonDown}
-                onMouseUp={handleButtonUp}
-                className="flex-1 flex items-center justify-center gap-3 bg-[#161b22] text-white font-black uppercase text-base md:text-xl px-6 md:px-12 py-3 md:py-5 border-[3px] border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] md:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] transition-colors hover:bg-[#238636] hover:text-black"
-              >
-                <Video className="h-5 w-5 md:h-6 md:w-6" />
-                Join Live Meeting
-              </button>
+              {isMeetingLive && (
+                <button
+                  onClick={() => setShowMeeting(true)}
+                  onMouseEnter={handleButtonHover}
+                  onMouseLeave={handleButtonLeave}
+                  onMouseDown={handleButtonDown}
+                  onMouseUp={handleButtonUp}
+                  className="flex-1 flex items-center justify-center gap-3 bg-[#161b22] text-white font-black uppercase text-base md:text-xl px-6 md:px-12 py-3 md:py-5 border-[3px] border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] md:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] transition-colors hover:bg-[#238636] hover:text-black"
+                >
+                  <Video className="h-5 w-5 md:h-6 md:w-6" />
+                  Join Live Meeting
+                </button>
+              )}
             </div>
+
+            {/* View Agenda Button */}
+            <Link
+              href="/agenda"
+              onMouseEnter={handleButtonHover}
+              onMouseLeave={handleButtonLeave}
+              onMouseDown={handleButtonDown}
+              onMouseUp={handleButtonUp}
+              className="mt-4 w-full flex items-center justify-center gap-3 bg-[#0d1117] text-[#39d353] font-black uppercase text-sm md:text-base px-6 py-3 border-[2px] border-[#39d353]/50 shadow-[4px_4px_0px_0px_#000] transition-all hover:bg-[#161b22] hover:border-[#39d353] hover:text-white"
+            >
+              <CalendarDays className="h-4 w-4 md:h-5 md:w-5" />
+              View Workshop Agenda
+            </Link>
           </div>
 
           <div className="animate-item w-full md:w-1/3 flex flex-col gap-6 mt-4 md:mt-0">
@@ -187,10 +219,10 @@ export function Workshop() {
 
             <div className="flex flex-col gap-5">
               {[
-                { name: "Sadiq Rabiu",      title: "Guild Master @ OS-Guild",  avatar: SadiqAvatar    },
-                { name: "Bruno Bernard",    title: "CTO @OSGuild",             avatar: BrunoAvatar    },
-                { name: "Megasley",         title: "GM Africa Free Routing",   avatar: MegasleyAvatar },
-                { name: "Abdullahi Yunus",  title: "Software Engineer",        avatar: AbdulAvatar    },
+                { name: "Sadiq Rabiu", title: "Guild Master @ OS-Guild", avatar: SadiqAvatar },
+                { name: "Bruno Bernard", title: "CTO @OSGuild", avatar: BrunoAvatar },
+                { name: "Megasley", title: "GM Africa Free Routing", avatar: MegasleyAvatar },
+                { name: "Abdullahi Yunus", title: "Software Engineer", avatar: AbdulAvatar },
               ].map((speaker) => (
                 <div
                   key={speaker.name}
