@@ -1,13 +1,22 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { animate, stagger } from "animejs";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Video } from "lucide-react";
 import Image from "next/image";
+import dynamic from "next/dynamic";
 import SadiqAvatar from "@/app/assets/Sadiq.jpg";
+
+// Dynamically import JitsiMeetingEmbed with SSR disabled (needs browser window)
+const JitsiMeetingEmbed = dynamic(
+  () =>
+    import("@/components/jitsi-meeting").then((mod) => mod.JitsiMeetingEmbed),
+  { ssr: false }
+);
 
 export function Workshop() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [showMeeting, setShowMeeting] = useState(false);
 
   useEffect(() => {
     // Anime.js animation setup for entrance
@@ -58,6 +67,22 @@ export function Workshop() {
     handleButtonHover(e);
   };
 
+  // When meeting is active, show Jitsi full-section overlay
+  if (showMeeting) {
+    return (
+      <section className="relative w-screen h-screen shrink-0 snap-center flex flex-col bg-[#010409] border-l-[3px] border-black border-dashed overflow-hidden">
+        {/* Jitsi Meeting takes over the workshop section */}
+        <div className="flex-1 p-4 sm:p-6 md:p-8">
+          <JitsiMeetingEmbed
+            roomName="osguild-workshop"
+            displayName="OS-Guild Member"
+            onClose={() => setShowMeeting(false)}
+          />
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section className="relative w-screen h-screen shrink-0 snap-center flex flex-col justify-center bg-[#010409] py-16 px-4 sm:px-12 md:py-24 md:px-16 border-l-[3px] border-black border-dashed overflow-y-auto overflow-x-hidden" ref={containerRef}>
       <div className="w-full max-w-5xl mx-auto">
@@ -83,7 +108,7 @@ export function Workshop() {
             </h3>
 
             <p className="text-sm sm:text-base md:text-lg text-[#c9d1d9] font-medium mb-8 border-l-4 border-[#39d353] pl-4 py-1">
-              This workshop focuses on how to help developers understand how to get started with open source the right way. You’ll learn how to navigate real codebases, contribute effectively, and move from learning to making meaningful contributions.
+              This workshop focuses on how to help developers understand how to get started with open source the right way. You'll learn how to navigate real codebases, contribute effectively, and move from learning to making meaningful contributions.
             </p>
 
             <div className="flex flex-wrap gap-4 mb-8">
@@ -104,18 +129,33 @@ export function Workshop() {
               </div>
             </div>
 
-            <a
-              href="https://app.evento.so/e/evt_Ppvv9rvexKXTWhFc"
-              target="_blank"
-              rel="noopener noreferrer"
-              onMouseEnter={handleButtonHover}
-              onMouseLeave={handleButtonLeave}
-              onMouseDown={handleButtonDown}
-              onMouseUp={handleButtonUp}
-              className="w-full sm:w-auto block text-center bg-[#39d353] text-black font-black uppercase text-base md:text-xl px-6 md:px-12 py-3 md:py-5 border-[3px] border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] md:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] transition-colors hover:bg-[#238636]"
-            >
-              Sign Up For Workshop
-            </a>
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4">
+              <a
+                href="https://app.evento.so/e/evt_Ppvv9rvexKXTWhFc"
+                target="_blank"
+                rel="noopener noreferrer"
+                onMouseEnter={handleButtonHover}
+                onMouseLeave={handleButtonLeave}
+                onMouseDown={handleButtonDown}
+                onMouseUp={handleButtonUp}
+                className="flex-1 block text-center bg-[#39d353] text-black font-black uppercase text-base md:text-xl px-6 md:px-12 py-3 md:py-5 border-[3px] border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] md:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] transition-colors hover:bg-[#238636]"
+              >
+                Sign Up For Workshop
+              </a>
+
+              <button
+                onClick={() => setShowMeeting(true)}
+                onMouseEnter={handleButtonHover}
+                onMouseLeave={handleButtonLeave}
+                onMouseDown={handleButtonDown}
+                onMouseUp={handleButtonUp}
+                className="flex-1 flex items-center justify-center gap-3 bg-[#161b22] text-white font-black uppercase text-base md:text-xl px-6 md:px-12 py-3 md:py-5 border-[3px] border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] md:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] transition-colors hover:bg-[#238636] hover:text-black"
+              >
+                <Video className="h-5 w-5 md:h-6 md:w-6" />
+                Join Live Meeting
+              </button>
+            </div>
           </div>
 
           <div className="animate-item w-full md:w-1/3 flex flex-col gap-6 mt-4 md:mt-0">
