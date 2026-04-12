@@ -6,6 +6,9 @@ import { ArrowLeft, Video } from "lucide-react";
 import Image from "next/image";
 import dynamic from "next/dynamic";
 import SadiqAvatar from "@/app/assets/Sadiq.jpg";
+import MegasleyAvatar from "@/app/assets/Megasley.png";
+import BrunoAvatar from "@/app/assets/Bruno.png";
+import AbdulAvatar from "@/app/assets/Abdul.png";
 
 // Dynamically import JitsiMeetingEmbed with SSR disabled (needs browser window)
 const JitsiMeetingEmbed = dynamic(
@@ -182,18 +185,30 @@ export function Workshop() {
               </h3>
             </div>
 
-            <div className="flex flex-col gap-8">
-              <div className="flex items-center gap-4">
-                <div className="w-16 h-16 shrink-0 bg-[#39d353] rounded-full flex items-center justify-center border-[3px] border-black shadow-[4px_4px_0px_0px_#000] overflow-hidden">
-                  <Image src={SadiqAvatar} alt="Sadiq" className="w-full h-full object-cover" />
+            <div className="flex flex-col gap-5">
+              {[
+                { name: "Sadiq Rabiu",      title: "Guild Master @ OS-Guild",  avatar: SadiqAvatar    },
+                { name: "Bruno Bernard",    title: "CTO @OSGuild",             avatar: BrunoAvatar    },
+                { name: "Megasley",         title: "GM Africa Free Routing",   avatar: MegasleyAvatar },
+                { name: "Abdullahi Yunus",  title: "Software Engineer",        avatar: AbdulAvatar    },
+              ].map((speaker) => (
+                <div
+                  key={speaker.name}
+                  className="flex items-center gap-4 bg-[#161b22] border-[2px] border-black/60 p-3 shadow-[3px_3px_0px_0px_#000] transition-transform hover:-translate-y-0.5"
+                >
+                  <div className="w-12 h-12 shrink-0 rounded-full border-[2px] border-black shadow-[2px_2px_0px_0px_#000] overflow-hidden">
+                    <Image src={speaker.avatar} alt={speaker.name} className="w-full h-full object-cover" />
+                  </div>
+                  <div className="min-w-0">
+                    <h4 className="text-base md:text-lg font-black text-white uppercase leading-none mb-1 truncate">
+                      {speaker.name}
+                    </h4>
+                    <p className="text-[#8b949e] font-bold uppercase text-[10px] md:text-xs truncate">
+                      {speaker.title}
+                    </p>
+                  </div>
                 </div>
-                <div>
-                  <h4 className="text-xl md:text-2xl font-black text-white uppercase leading-none mb-1">Sadiq Rabiu</h4>
-                  <p className="text-[#8b949e] font-bold uppercase text-xs md:text-sm">Guild Master @ OS-Guild</p>
-                </div>
-              </div>
-
-              {/* Optional: Add more speakers here in the exact same format later */}
+              ))}
             </div>
           </div>
         </div>
