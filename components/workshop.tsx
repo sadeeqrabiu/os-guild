@@ -32,6 +32,13 @@ export function Workshop() {
     }
   }, []);
 
+  // Listen for the hero button's custom event to auto-open the meeting
+  useEffect(() => {
+    const handler = () => setShowMeeting(true);
+    window.addEventListener("open-jitsi-meeting", handler);
+    return () => window.removeEventListener("open-jitsi-meeting", handler);
+  }, []);
+
   const handleButtonHover = (e: React.MouseEvent<HTMLElement>) => {
     animate(e.currentTarget, {
       scale: 1.05,

@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { useRef, useState } from "react";
 import { animate } from "animejs";
 import { useRouter } from "next/navigation";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Video } from "lucide-react";
 
 export function Hero() {
   const buttonRef = useRef<HTMLButtonElement>(null);
@@ -110,12 +110,23 @@ export function Hero() {
             >
               Join Guild
             </button>
-            {/* <button
-              onClick={() => router.push("/dashboard")}
-              className="block bg-[#161b22] px-8 py-3 text-base font-black uppercase text-white shadow-[4px_4px_0px_0px_#000] border-[3px] border-black transition-transform hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_#39d353] hover:border-[#39d353]"
+
+            <button
+              onClick={() => {
+                // Scroll to workshop section, then trigger the meeting
+                const main = document.querySelector('main');
+                main?.scrollBy({ left: window.innerWidth, behavior: 'smooth' });
+                // Dispatch a custom event that Workshop listens for
+                setTimeout(() => {
+                  window.dispatchEvent(new CustomEvent('open-jitsi-meeting'));
+                }, 800);
+              }}
+              className="group relative flex items-center gap-2 px-8 py-3 text-base font-black uppercase text-white border-[3px] border-[#39d353] bg-[#0d1117] shadow-[4px_4px_0px_0px_#000] transition-all hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_#39d353] animate-[glow_2s_ease-in-out_infinite]"
             >
-              Dashboard
-            </button> */}
+              <span className="absolute inset-0 bg-[#39d353]/10 opacity-0 group-hover:opacity-100 transition-opacity" />
+              <Video className="h-5 w-5 text-[#39d353] group-hover:text-white transition-colors" />
+              <span className="relative">Join Meeting</span>
+            </button>
           </div>
         </motion.div>
       </div>
