@@ -22,6 +22,7 @@ export function Workshop() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [showMeeting, setShowMeeting] = useState(false);
   const [isMeetingLive, setIsMeetingLive] = useState(false);
+  const [activeTab, setActiveTab] = useState<"past" | "upcoming">("past");
 
   useEffect(() => {
     // Anime.js animation setup for entrance
@@ -113,51 +114,69 @@ export function Workshop() {
   return (
     <section className="relative w-screen h-screen shrink-0 snap-center flex flex-col justify-center bg-[#010409] py-16 px-4 sm:px-12 md:py-24 md:px-16 border-l-[3px] border-black border-dashed overflow-y-auto overflow-x-hidden" ref={containerRef}>
       <div className="w-full max-w-5xl mx-auto">
-        <div className="animate-item bg-[#238636] border-[3px] border-black inline-block px-4 py-2 mb-6 shadow-[4px_4px_0px_0px_#000] -rotate-2">
-          <h2 className="text-3xl sm:text-4xl md:text-6xl font-black uppercase tracking-tighter text-white">
-            Workshop
-          </h2>
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
+          <div className="animate-item bg-[#238636] border-[3px] border-black inline-block px-4 py-2 shadow-[4px_4px_0px_0px_#000] -rotate-2">
+            <h2 className="text-3xl sm:text-4xl md:text-6xl font-black uppercase tracking-tighter text-white">
+              Workshop
+            </h2>
+          </div>
+
+          <div className="animate-item flex gap-2 bg-[#0d1117] p-1.5 border-[3px] border-black shadow-[4px_4px_0px_0px_#000]">
+            <button
+              onClick={() => setActiveTab('past')}
+              className={`px-3 py-1.5 font-black uppercase text-xs md:text-sm tracking-wider transition-colors ${activeTab === 'past' ? 'bg-[#f85149] text-white border-[2px] border-black shadow-[2px_2px_0px_0px_#000]' : 'text-[#8b949e] hover:text-white border-[2px] border-transparent'}`}
+            >
+              Past Event
+            </button>
+            <button
+              onClick={() => setActiveTab('upcoming')}
+              className={`px-3 py-1.5 font-black uppercase text-xs md:text-sm tracking-wider transition-colors ${activeTab === 'upcoming' ? 'bg-[#39d353] text-black border-[2px] border-black shadow-[2px_2px_0px_0px_#000]' : 'text-[#8b949e] hover:text-white border-[2px] border-transparent'}`}
+            >
+              Upcoming Workshop
+            </button>
+          </div>
         </div>
 
-        <div className="flex flex-col md:flex-row gap-8 lg:gap-16">
-          <div className="animate-item w-full md:w-2/3 flex-1 bg-[#0d1117] border-[3px] border-black p-5 sm:p-8 md:p-12 shadow-[6px_6px_0px_0px_#39d353] md:shadow-[12px_12px_0px_0px_#39d353] relative z-10 transition-colors">
-            {/* Decorative element */}
-            <div className="absolute -top-4 -right-4 md:-top-6 md:-right-6 w-12 h-12 md:w-16 md:h-16 bg-[#39d353] border-[3px] border-black rounded-full shadow-[4px_4px_0px_0px_#000] flex items-center justify-center">
-              <span className="text-black font-black text-xl md:text-2xl rotate-12">!</span>
-            </div>
-
-            <p className="text-[#39d353] font-bold uppercase tracking-wider border-2 border-black inline-block px-2 py-1 bg-[#161b22] mb-4 text-xs sm:text-sm shadow-[2px_2px_0px_0px_#000]">
-              Upcoming Event
-            </p>
-
-            <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black text-white uppercase mb-4 leading-tight">
-              Open Source In 2026: AI, Discipline, and the New Contributor Standard
-            </h3>
-
-            <p className="text-sm sm:text-base md:text-lg text-[#c9d1d9] font-medium mb-8 border-l-4 border-[#39d353] pl-4 py-1">
-              This workshop focuses on how to help developers understand how to get started with open source the right way. You'll learn how to navigate real codebases, contribute effectively, and move from learning to making meaningful contributions.
-            </p>
-
-            <div className="flex flex-wrap gap-4 mb-8">
-              <div className="bg-[#161b22] border-[3px] border-black p-4 md:p-5 shadow-[4px_4px_0px_0px_#000] md:shadow-[6px_6px_0px_0px_#000] transform hover:-translate-y-1 transition-transform">
-                <div>
-                  <p className="text-xs font-black uppercase text-[#8b949e] mb-1">Date</p>
-                  <p className="text-lg md:text-xl font-black text-white uppercase mb-2">April 15, 2026</p>
-                </div>
-                <p className="text-xs md:text-sm font-bold border-t-2 border-black/50 border-dashed pt-2 mt-2 text-[#c9d1d9]">20:00 (GMT+4)</p>
+        {activeTab === 'past' ? (
+          <div className="flex flex-col md:flex-row gap-8 lg:gap-16">
+            <div className="animate-item w-full md:w-2/3 flex-1 bg-[#0d1117] border-[3px] border-black p-5 sm:p-8 md:p-12 shadow-[6px_6px_0px_0px_#39d353] md:shadow-[12px_12px_0px_0px_#39d353] relative z-10 transition-colors">
+              {/* Decorative element */}
+              <div className="absolute -top-4 -right-4 md:-top-6 md:-right-6 w-12 h-12 md:w-16 md:h-16 bg-[#39d353] border-[3px] border-black rounded-full shadow-[4px_4px_0px_0px_#000] flex items-center justify-center">
+                <span className="text-black font-black text-xl md:text-2xl rotate-12">!</span>
               </div>
 
-              <div className="bg-[#161b22] border-[3px] border-black p-4 md:p-5 shadow-[4px_4px_0px_0px_#000] md:shadow-[6px_6px_0px_0px_#000] transform hover:-translate-y-1 transition-transform">
-                <div>
-                  <p className="text-xs font-black uppercase text-[#8b949e] mb-1">Type</p>
-                  <p className="text-lg md:text-xl font-black text-white uppercase mb-2">Expert Panel</p>
-                </div>
-                <p className="text-xs md:text-sm font-bold border-t-2 border-black/50 border-dashed pt-2 mt-2 text-[#c9d1d9]">Talks & Discussion</p>
-              </div>
-            </div>
+              <p className="text-[#f85149] font-bold uppercase tracking-wider border-2 border-black inline-block px-2 py-1 bg-[#161b22] mb-4 text-xs sm:text-sm shadow-[2px_2px_0px_0px_#000]">
+                Past Event
+              </p>
 
-            {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4">
+              <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black text-white uppercase mb-4 leading-tight">
+                Open Source In 2026: AI, Discipline, and the New Contributor Standard
+              </h3>
+
+              <p className="text-sm sm:text-base md:text-lg text-[#c9d1d9] font-medium mb-8 border-l-4 border-[#39d353] pl-4 py-1">
+                This workshop focuses on how to help developers understand how to get started with open source the right way. You'll learn how to navigate real codebases, contribute effectively, and move from learning to making meaningful contributions.
+              </p>
+
+              <div className="flex flex-wrap gap-4 mb-8">
+                <div className="bg-[#161b22] border-[3px] border-black p-4 md:p-5 shadow-[4px_4px_0px_0px_#000] md:shadow-[6px_6px_0px_0px_#000] transform hover:-translate-y-1 transition-transform">
+                  <div>
+                    <p className="text-xs font-black uppercase text-[#8b949e] mb-1">Date</p>
+                    <p className="text-lg md:text-xl font-black text-white uppercase mb-2">April 15, 2026</p>
+                  </div>
+                  <p className="text-xs md:text-sm font-bold border-t-2 border-black/50 border-dashed pt-2 mt-2 text-[#c9d1d9]">20:00 (GMT+4)</p>
+                </div>
+
+                <div className="bg-[#161b22] border-[3px] border-black p-4 md:p-5 shadow-[4px_4px_0px_0px_#000] md:shadow-[6px_6px_0px_0px_#000] transform hover:-translate-y-1 transition-transform">
+                  <div>
+                    <p className="text-xs font-black uppercase text-[#8b949e] mb-1">Type</p>
+                    <p className="text-lg md:text-xl font-black text-white uppercase mb-2">Expert Panel</p>
+                  </div>
+                  <p className="text-xs md:text-sm font-bold border-t-2 border-black/50 border-dashed pt-2 mt-2 text-[#c9d1d9]">Talks & Discussion</p>
+                </div>
+              </div>
+
+              {/* CTA Buttons */}
+              {/* <div className="flex flex-col sm:flex-row gap-4">
               <a
                 href="https://app.evento.so/e/evt_Ppvv9rvexKXTWhFc"
                 target="_blank"
@@ -184,66 +203,77 @@ export function Workshop() {
                   Join Live Meeting
                 </button>
               )}
+            </div> */}
+
+              {/* View Agenda Button */}
+              <Link
+                href="/agenda"
+                onMouseEnter={handleButtonHover}
+                onMouseLeave={handleButtonLeave}
+                onMouseDown={handleButtonDown}
+                onMouseUp={handleButtonUp}
+                className="mt-4 w-full flex items-center justify-center gap-3 bg-[#0d1117] text-[#39d353] font-black uppercase text-sm md:text-base px-6 py-3 border-[2px] border-[#39d353]/50 shadow-[4px_4px_0px_0px_#000] transition-all hover:bg-[#161b22] hover:border-[#39d353] hover:text-white"
+              >
+                <CalendarDays className="h-4 w-4 md:h-5 md:w-5" />
+                View Workshop Agenda
+              </Link>
             </div>
 
-            {/* View Agenda Button */}
-            <Link
-              href="/agenda"
-              onMouseEnter={handleButtonHover}
-              onMouseLeave={handleButtonLeave}
-              onMouseDown={handleButtonDown}
-              onMouseUp={handleButtonUp}
-              className="mt-4 w-full flex items-center justify-center gap-3 bg-[#0d1117] text-[#39d353] font-black uppercase text-sm md:text-base px-6 py-3 border-[2px] border-[#39d353]/50 shadow-[4px_4px_0px_0px_#000] transition-all hover:bg-[#161b22] hover:border-[#39d353] hover:text-white"
-            >
-              <CalendarDays className="h-4 w-4 md:h-5 md:w-5" />
-              View Workshop Agenda
-            </Link>
-          </div>
+            <div className="animate-item w-full md:w-1/3 flex flex-col gap-6 mt-4 md:mt-0">
+              {/* Mobile-only Back Button above Line Up */}
+              <button
+                onClick={() => document.querySelector('main')?.scrollBy({ left: -window.innerWidth, behavior: 'smooth' })}
+                className="flex md:hidden flex-row items-center justify-start gap-3 w-fit animate-pulse text-[#39d353] hover:text-white transition-colors cursor-pointer border-none bg-transparent mb-2"
+                aria-label="Scroll back to Hero"
+              >
+                <ArrowLeft className="w-8 h-8" />
+                <span className="font-mono text-xl font-bold uppercase tracking-widest whitespace-nowrap">Back</span>
+              </button>
 
-          <div className="animate-item w-full md:w-1/3 flex flex-col gap-6 mt-4 md:mt-0">
-            {/* Mobile-only Back Button above Line Up */}
-            <button
-              onClick={() => document.querySelector('main')?.scrollBy({ left: -window.innerWidth, behavior: 'smooth' })}
-              className="flex md:hidden flex-row items-center justify-start gap-3 w-fit animate-pulse text-[#39d353] hover:text-white transition-colors cursor-pointer border-none bg-transparent mb-2"
-              aria-label="Scroll back to Hero"
-            >
-              <ArrowLeft className="w-8 h-8" />
-              <span className="font-mono text-xl font-bold uppercase tracking-widest whitespace-nowrap">Back</span>
-            </button>
+              <div className="inline-block border-b-[4px] border-[#39d353] pb-2">
+                <h3 className="text-3xl font-black text-white uppercase tracking-tighter">
+                  Line Up
+                </h3>
+              </div>
 
-            <div className="inline-block border-b-[4px] border-[#39d353] pb-2">
-              <h3 className="text-3xl font-black text-white uppercase tracking-tighter">
-                Line Up
-              </h3>
-            </div>
-
-            <div className="flex flex-col gap-5">
-              {[
-                { name: "Sadiq Rabiu", title: "Guild Master @ OS-Guild", avatar: SadiqAvatar },
-                { name: "Bruno Bernard", title: "CTO @OSGuild", avatar: BrunoAvatar },
-                { name: "Megasley", title: "GM Africa Free Routing", avatar: MegasleyAvatar },
-                { name: "Abdullahi Yunus", title: "Software Engineer", avatar: AbdulAvatar },
-              ].map((speaker) => (
-                <div
-                  key={speaker.name}
-                  className="flex items-center gap-4 bg-[#161b22] border-[2px] border-black/60 p-3 shadow-[3px_3px_0px_0px_#000] transition-transform hover:-translate-y-0.5"
-                >
-                  <div className="w-12 h-12 shrink-0 rounded-full border-[2px] border-black shadow-[2px_2px_0px_0px_#000] overflow-hidden">
-                    <Image src={speaker.avatar} alt={speaker.name} className="w-full h-full object-cover" />
+              <div className="flex flex-col gap-5">
+                {[
+                  { name: "Sadiq Rabiu", title: "Guild Master @ OS-Guild", avatar: SadiqAvatar },
+                  { name: "Bruno Bernard", title: "CTO @OSGuild", avatar: BrunoAvatar },
+                  { name: "Megasley", title: "GM Africa Free Routing", avatar: MegasleyAvatar },
+                  { name: "Abdullahi Yunus", title: "Software Engineer", avatar: AbdulAvatar },
+                ].map((speaker) => (
+                  <div
+                    key={speaker.name}
+                    className="flex items-center gap-4 bg-[#161b22] border-[2px] border-black/60 p-3 shadow-[3px_3px_0px_0px_#000] transition-transform hover:-translate-y-0.5"
+                  >
+                    <div className="w-12 h-12 shrink-0 rounded-full border-[2px] border-black shadow-[2px_2px_0px_0px_#000] overflow-hidden">
+                      <Image src={speaker.avatar} alt={speaker.name} className="w-full h-full object-cover" />
+                    </div>
+                    <div className="min-w-0">
+                      <h4 className="text-base md:text-lg font-black text-white uppercase leading-none mb-1 truncate">
+                        {speaker.name}
+                      </h4>
+                      <p className="text-[#8b949e] font-bold uppercase text-[10px] md:text-xs truncate">
+                        {speaker.title}
+                      </p>
+                    </div>
                   </div>
-                  <div className="min-w-0">
-                    <h4 className="text-base md:text-lg font-black text-white uppercase leading-none mb-1 truncate">
-                      {speaker.name}
-                    </h4>
-                    <p className="text-[#8b949e] font-bold uppercase text-[10px] md:text-xs truncate">
-                      {speaker.title}
-                    </p>
-                  </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
-        </div>
+        ) : (
+          <div className="animate-item flex flex-col items-center justify-center p-12 bg-[#0d1117] border-[3px] border-black shadow-[6px_6px_0px_0px_#39d353] min-h-[400px]">
+            <CalendarDays className="w-16 h-16 text-[#8b949e] mb-6 opacity-50" />
+            <h3 className="text-2xl md:text-4xl font-black text-white uppercase tracking-tighter text-center mb-4">
+              More Workshops Coming Soon
+            </h3>
+            <p className="text-[#8b949e] text-center max-w-md font-medium text-sm md:text-base">
+              We are currently preparing our next series of workshops. Check back later or join our community to get notified.
+            </p>
+          </div>
+        )}
       </div>
 
       {/* Blinking Scroll Back Arrow - Desktop Only */}
