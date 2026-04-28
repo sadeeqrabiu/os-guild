@@ -10,8 +10,6 @@ import {
   Terminal,
   Zap,
 } from "lucide-react";
-import { NostrUserProvider, useNostrUser } from "@/hooks/use-nostr-user";
-import type { NostrUser } from "@/lib/nostr-user";
 
 const pinnedProjects = [
   {
@@ -127,13 +125,10 @@ function ActivityItem({ item, delay }: { item: (typeof recentActivity)[number]; 
   );
 }
 
-function DashboardContent() {
-  const user = useNostrUser();
-  const displayName = user?.preferredUsername ?? user?.name ?? user?.user ?? "OS Developer";
-  const handle = user?.remoteUser ?? user?.user ?? "@osguild-dev";
-  const subtitle = user?.groups.length
-    ? `Groups: ${user.groups.join(", ")}`
-    : "Building the decentralized future. Full-stack engineer focusing on Bitcoin protocols, cryptography, and open systems.";
+export default function DungeonPage() {
+  const displayName = "OS Developer";
+  const handle = "@osguild-dev";
+  const subtitle = "Building the decentralized future. Full-stack engineer focusing on Bitcoin protocols, cryptography, and open systems.";
 
   return (
     <div className="min-h-screen bg-[#010409] font-[family-name:var(--font-geist-sans)] text-white selection:bg-[#39d353] selection:text-black">
@@ -148,32 +143,19 @@ function DashboardContent() {
             </span>
           </div>
 
-          <nav className="flex items-center gap-4">
-            <div className="flex gap-1">
-              {["Overview", "Projects", "Activity"].map((item, i) => (
-                <button
-                  key={item}
-                  className={`px-4 py-2 text-sm font-bold transition-all ${
-                    i === 0
-                      ? "border-black bg-[#238636] text-black shadow-[2px_2px_0px_0px_#000]"
-                      : "border-transparent text-[#8b949e] hover:border-black/50 hover:text-white"
-                  } border-[2px]`}
-                >
-                  {item}
-                </button>
-              ))}
-            </div>
-            {user && (
-              <button 
-                onClick={() => {
-                  // We inline the signout call to avoid importing the hook and causing issues with hook rules if not at top level
-                  import('next-auth/react').then((m) => m.signOut({ callbackUrl: '/' }));
-                }}
-                className="px-4 py-2 text-sm font-bold border-[2px] border-black bg-[#0d1117] text-[#8b949e] hover:border-[#f85149] hover:text-[#f85149] transition-all"
+          <nav className="flex gap-1">
+            {["Overview", "Projects", "Activity"].map((item, i) => (
+              <button
+                key={item}
+                className={`px-4 py-2 text-sm font-bold transition-all ${
+                  i === 0
+                    ? "border-black bg-[#238636] text-black shadow-[2px_2px_0px_0px_#000]"
+                    : "border-transparent text-[#8b949e] hover:border-black/50 hover:text-white"
+                } border-[2px]`}
               >
-                Sign Out
+                {item}
               </button>
-            )}
+            ))}
           </nav>
         </div>
       </header>
@@ -257,13 +239,5 @@ function DashboardContent() {
         </div>
       </main>
     </div>
-  );
-}
-
-export function Dashboard({ user }: { user: NostrUser | null }) {
-  return (
-    <NostrUserProvider user={user}>
-      <DashboardContent />
-    </NostrUserProvider>
   );
 }
