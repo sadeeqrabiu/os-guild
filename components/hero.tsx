@@ -5,7 +5,9 @@ import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { animate } from "animejs";
 import { useRouter } from "next/navigation";
-import { ArrowRight, Video } from "lucide-react";
+import { ArrowRight, Video, User } from "lucide-react";
+import Link from "next/link";
+import { useGithubAuth } from "@/hooks/useGithubAuth";
 
 export function Hero() {
   const buttonRef = useRef<HTMLButtonElement>(null);
@@ -13,6 +15,7 @@ export function Hero() {
   const [isJoining, setIsJoining] = useState(false);
   const [isMeetingLive, setIsMeetingLive] = useState(false);
   const router = useRouter();
+  const { signInWithGithub, isLoading } = useGithubAuth();
 
   // Show "Join Meeting" only during Apr 15, 2026 5:00 PM – 6:30 PM WAT (UTC+1)
   useEffect(() => {
@@ -86,6 +89,21 @@ export function Hero() {
   };
   return (
     <section className="relative w-screen h-screen shrink-0 snap-center overflow-hidden bg-[#010409]">
+      {/* Centered Navbar */}
+      {/* <nav className="absolute top-6 left-0 right-0 z-50 flex justify-center pointer-events-auto px-4">
+        <div className="flex items-center gap-6 bg-[#0d1117] border-[3px] border-black px-6 py-2.5 shadow-[4px_4px_0px_0px_#39d353]">
+          <Link
+            href="/dashboard"
+            className="text-sm md:text-base font-black uppercase text-white hover:text-[#39d353] transition-colors"
+          >
+            Dashboard
+          </Link>
+          <div className="w-10 h-10 rounded-full border-[2px] border-[#39d353] bg-[#161b22] overflow-hidden flex items-center justify-center shadow-[2px_2px_0px_0px_#000] cursor-pointer hover:bg-[#39d353] hover:text-black transition-colors group">
+            <User className="w-5 h-5 text-[#39d353] group-hover:text-black transition-colors" />
+          </div>
+        </div>
+      </nav> */}
+
       {/* Perspective Grid Background */}
       <div className="absolute inset-0 opacity-40">
         <PerspectiveGrid gridSize={40} fadeRadius={95} />
@@ -126,6 +144,21 @@ export function Hero() {
             >
               Join Guild
             </button>
+
+            <Link
+              href="/genesis-workshop"
+              className="flex items-center justify-center bg-[#0d1117] px-8 py-3 text-base font-black uppercase text-white shadow-[4px_4px_0px_0px_#000] border-[3px] border-black transition-all hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_#39d353] hover:text-[#39d353]"
+            >
+              Genesis Workshop
+            </Link>
+
+            {/* <button
+              onClick={signInWithGithub}
+              disabled={isLoading}
+              className="flex items-center justify-center bg-[#0d1117] px-8 py-3 text-base font-black uppercase text-white shadow-[4px_4px_0px_0px_#000] border-[3px] border-black transition-all hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_#39d353] hover:text-[#39d353] disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              {isLoading ? "Connecting..." : "Sign Up with GitHub"}
+            </button> */}
 
             {isMeetingLive && (
               <button
