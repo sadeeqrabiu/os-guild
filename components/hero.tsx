@@ -158,9 +158,10 @@ export function Hero() {
 
             <Link
               href="/genesis-workshop"
-              className="flex items-center justify-center bg-[#0d1117] px-8 py-3 text-base font-black uppercase text-white shadow-[4px_4px_0px_0px_#000] border-[3px] border-black transition-all hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_#39d353] hover:text-[#39d353]"
+              className="group relative flex items-center justify-center bg-[#0d1117] px-8 py-3 text-base font-black uppercase text-white shadow-[4px_4px_0px_0px_#000] border-[3px] border-[#f85149] transition-all hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_#f85149] hover:text-white animate-[glow_2s_ease-in-out_infinite]"
             >
-              Genesis Workshop
+              <span className="absolute inset-0 bg-[#f85149]/10 opacity-0 group-hover:opacity-100 transition-opacity" />
+              <span className="relative">Genesis Workshop</span>
             </Link>
 
             {/* <button
