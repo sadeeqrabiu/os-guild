@@ -121,8 +121,19 @@ export function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="pointer-events-auto flex flex-col items-center gap-8"
+          className="pointer-events-auto flex flex-col items-center gap-8 w-full overflow-hidden"
         >
+          {/* Announcing Marquee */}
+          <Link href="/genesis-workshop" className="w-full max-w-2xl overflow-hidden whitespace-nowrap relative cursor-pointer group -mb-2" style={{ WebkitMaskImage: "linear-gradient(to right, transparent, black 15%, black 85%, transparent)" }}>
+            <motion.div
+              animate={{ x: ["100%", "-100%"] }}
+              transition={{ repeat: Infinity, duration: 15, ease: "linear" }}
+              className="inline-block font-mono text-xs sm:text-sm font-black uppercase tracking-widest text-[#8b949e] group-hover:text-[#f85149] transition-colors"
+            >
+              *** ANNOUNCING: THE GENESIS WORKSHOP &bull; IN COLLABORATION WITH BITDEVS MAURITIUS 🇲🇺 &bull; CLICK HERE TO VIEW DETAILS ***
+            </motion.div>
+          </Link>
+
           <span className="inline-block border-[3px] border-black bg-[#161b22] px-4 py-2 font-mono text-sm font-bold uppercase tracking-wider text-[#39d353] shadow-[4px_4px_0px_0px_#000]">
             .OS GUILD
           </span>
