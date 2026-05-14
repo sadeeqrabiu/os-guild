@@ -22,7 +22,7 @@ export function Workshop() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [showMeeting, setShowMeeting] = useState(false);
   const [isMeetingLive, setIsMeetingLive] = useState(false);
-  const [activeTab, setActiveTab] = useState<"past" | "upcoming">("past");
+  const [activeTab, setActiveTab] = useState<"past" | "upcoming">("upcoming");
 
   useEffect(() => {
     // Anime.js animation setup for entrance
@@ -112,8 +112,22 @@ export function Workshop() {
   }
 
   return (
-    <section className="relative w-screen h-screen shrink-0 snap-center flex flex-col justify-center bg-[#010409] py-16 px-4 sm:px-12 md:py-24 md:px-16 border-l-[3px] border-black border-dashed overflow-y-auto overflow-x-hidden" ref={containerRef}>
-      <div className="w-full max-w-5xl mx-auto">
+    <section className="relative w-screen h-screen shrink-0 snap-center flex flex-col bg-[#010409] border-l-[3px] border-black border-dashed overflow-y-auto overflow-x-hidden" ref={containerRef}>
+      {/* Navigation Header */}
+      <nav className="animate-item sticky top-0 z-50 flex items-center justify-between border-b-[3px] border-black bg-[#0d1117] p-4 shadow-[0_4px_0_0_#000]">
+        <button
+          onClick={() => document.querySelector('main')?.scrollBy({ left: -window.innerWidth, behavior: 'smooth' })}
+          className="flex items-center gap-2 border-[2px] border-transparent p-2 text-[#8b949e] transition-colors hover:border-black hover:bg-[#161b22] hover:text-white cursor-pointer"
+          aria-label="Scroll back to Hero"
+        >
+          <ArrowLeft className="h-5 w-5" />
+          <span className="font-bold uppercase tracking-wider">Back</span>
+        </button>
+      </nav>
+
+      {/* Main Content Area */}
+      <div className="flex-1 flex flex-col justify-center py-12 px-4 sm:px-12 md:py-24 md:px-16">
+        <div className="w-full max-w-5xl mx-auto">
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
           <div className="animate-item bg-[#238636] border-[3px] border-black inline-block px-4 py-2 shadow-[4px_4px_0px_0px_#000] -rotate-2">
             <h2 className="text-3xl sm:text-4xl md:text-6xl font-black uppercase tracking-tighter text-white">
@@ -154,7 +168,7 @@ export function Workshop() {
               </h3>
 
               <p className="text-sm sm:text-base md:text-lg text-[#c9d1d9] font-medium mb-8 border-l-4 border-[#39d353] pl-4 py-1">
-                This workshop focuses on how to help developers understand how to get started with open source the right way. You'll learn how to navigate real codebases, contribute effectively, and move from learning to making meaningful contributions.
+                This workshop focuses on how to help developers understand how to get started with open source the right way. You&apos;ll learn how to navigate real codebases, contribute effectively, and move from learning to making meaningful contributions.
               </p>
 
               <div className="flex flex-wrap gap-4 mb-8">
@@ -220,16 +234,6 @@ export function Workshop() {
             </div>
 
             <div className="animate-item w-full md:w-1/3 flex flex-col gap-6 mt-4 md:mt-0">
-              {/* Mobile-only Back Button above Line Up */}
-              <button
-                onClick={() => document.querySelector('main')?.scrollBy({ left: -window.innerWidth, behavior: 'smooth' })}
-                className="flex md:hidden flex-row items-center justify-start gap-3 w-fit animate-pulse text-[#39d353] hover:text-white transition-colors cursor-pointer border-none bg-transparent mb-2"
-                aria-label="Scroll back to Hero"
-              >
-                <ArrowLeft className="w-8 h-8" />
-                <span className="font-mono text-xl font-bold uppercase tracking-widest whitespace-nowrap">Back</span>
-              </button>
-
               <div className="inline-block border-b-[4px] border-[#39d353] pb-2">
                 <h3 className="text-3xl font-black text-white uppercase tracking-tighter">
                   Line Up
@@ -264,27 +268,30 @@ export function Workshop() {
             </div>
           </div>
         ) : (
-          <div className="animate-item flex flex-col items-center justify-center p-12 bg-[#0d1117] border-[3px] border-black shadow-[6px_6px_0px_0px_#39d353] min-h-[400px]">
-            <CalendarDays className="w-16 h-16 text-[#8b949e] mb-6 opacity-50" />
-            <h3 className="text-2xl md:text-4xl font-black text-white uppercase tracking-tighter text-center mb-4">
-              More Workshops Coming Soon
+          <div className="animate-item flex flex-col items-start justify-center p-8 sm:p-12 bg-[#0d1117] border-[3px] border-black shadow-[6px_6px_0px_0px_#39d353] min-h-[400px] relative overflow-hidden">
+            <div className="absolute top-4 right-4 bg-[#39d353] text-black font-black uppercase text-xs px-2 py-1 border-[2px] border-black shadow-[2px_2px_0px_0px_#000] rotate-3">
+              Upcoming
+            </div>
+            <h3 className="text-3xl md:text-5xl font-black text-white uppercase tracking-tighter mb-4">
+              The <span className="text-[#39d353]">Genesis</span> Workshop
             </h3>
-            <p className="text-[#8b949e] text-center max-w-md font-medium text-sm md:text-base">
-              We are currently preparing our next series of workshops. Check back later or join our community to get notified.
+            <div className="flex items-center gap-2 mb-6 text-[#8b949e]">
+              <CalendarDays className="w-5 h-5" />
+              <span className="font-bold uppercase tracking-wider text-sm">TBA &bull; Workshop17 Mauritius</span>
+            </div>
+            <p className="text-[#c9d1d9] font-medium text-base md:text-lg mb-8 max-w-2xl border-l-4 border-[#39d353] pl-4">
+              A hands-on Bitcoin and open-source workshop organized by OSGuild in collaboration with BitDevs Mauritius. Join us to learn open-source culture, Bitcoin technology, and real-world contribution pathways.
             </p>
+            <Link
+              href="/genesis-workshop"
+              className="inline-block border-[3px] border-black bg-white px-8 py-4 text-sm font-black uppercase text-black shadow-[4px_4px_0px_0px_#000] transition-colors hover:bg-[#39d353] sm:text-base"
+            >
+              View Workshop Details
+            </Link>
           </div>
         )}
       </div>
-
-      {/* Blinking Scroll Back Arrow - Desktop Only */}
-      <button
-        onClick={() => document.querySelector('main')?.scrollBy({ left: -window.innerWidth, behavior: 'smooth' })}
-        className="hidden md:flex absolute left-8 bottom-1/2 translate-y-1/2 flex-col items-center gap-4 animate-pulse text-[#39d353] hover:text-white transition-colors cursor-pointer border-none bg-transparent"
-        aria-label="Scroll back to Hero"
-      >
-        <ArrowLeft className="w-8 h-8" />
-        <span className="font-mono text-sm font-bold uppercase -rotate-90 md:-rotate-90 tracking-widest whitespace-nowrap hidden md:block mt-4">Back</span>
-      </button>
+      </div>
     </section>
   );
 }
