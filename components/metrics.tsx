@@ -7,28 +7,28 @@ export function Metrics() {
   const GRID_ITEMS = [
     {
       label: "Active Builders",
-      val: "150+",
+      val: "0+",
       desc: "Cypherpunk FOSS engineers",
       icon: Users,
       color: "#238636"
     },
     {
       label: "Sats Routed",
-      val: "4,200,000+",
+      val: "0,000,000+",
       desc: "Lightning incentive pools",
       icon: Coins,
       color: "#39d353"
     },
     {
       label: "Merged Pull Requests",
-      val: "840+",
+      val: "0+",
       desc: "Verified FOSS contributions",
       icon: GitPullRequest,
       color: "#fff"
     },
     {
       label: "Linked Nodes",
-      val: "24+",
+      val: "2+",
       desc: "Decentralized Nostr relays",
       icon: Radio,
       color: "#f85149"

@@ -28,7 +28,7 @@ export function Pathway() {
     {
       week: 4,
       title: "Active Team Sprints",
-      desc: "Collaborate inside developer cohort groups. Focus on active cryptographic and Fedimint modules.",
+      desc: "Collaborate inside developer cohort groups. Focus on active FOSS Projects.",
       icon: Flame,
       badge: "Active Stage",
       isActive: true,
@@ -36,7 +36,7 @@ export function Pathway() {
     {
       week: 5,
       title: "Core Preparedness",
-      desc: "Integrate Lightning Development Kit (LDK) tooling, scale node topologies, and prepare for graduation reviews.",
+      desc: "Prepare for graduation reviews.",
       icon: ShieldCheck,
       badge: "Upcoming",
     },

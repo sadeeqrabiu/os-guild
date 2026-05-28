@@ -4,7 +4,7 @@ import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { animate, stagger } from "animejs";
 import { ArrowLeft, Terminal, GitPullRequest, ShieldCheck, Cpu } from "lucide-react";
-import { RotatingBitcoin } from "./rotating-bitcoin";
+
 import Image from "next/image";
 import BtrustLogo from "@/app/assets/Btrust-white.png";
 import AbdulImg from "@/app/assets/Abdul.png";
@@ -98,9 +98,7 @@ export function GenesisWorkshop() {
             </div>
           </div>
 
-          <div className="hidden md:block shrink-0">
-            <RotatingBitcoin />
-          </div>
+
         </header>
 
         {/* System Flow / Pipeline */}

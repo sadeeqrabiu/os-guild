@@ -50,7 +50,7 @@ export function Navbar() {
             className="flex items-center gap-1.5 px-4 py-1.5 border-2 border-black bg-[#238636] text-xs font-black uppercase text-black shadow-[2px_2px_0px_0px_#000] hover:bg-[#39d353] hover:shadow-[3px_3px_0px_0px_#000] active:translate-y-0.5 active:shadow-[1px_1px_0px_0px_#000] transition-all cursor-pointer"
           >
             <Terminal className="h-3.5 w-3.5" />
-            <span>Dashboard</span>
+            <span>Dungeon</span>
           </Link>
         </nav>
       </div>
