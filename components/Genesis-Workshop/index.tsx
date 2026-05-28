@@ -5,7 +5,6 @@ import Link from "next/link";
 import { animate, stagger } from "animejs";
 import { ArrowLeft, Terminal, GitPullRequest, ShieldCheck, Cpu } from "lucide-react";
 import { RotatingBitcoin } from "./rotating-bitcoin";
-import { PerspectiveGrid } from "@/components/ui/perspective-grid";
 import Image from "next/image";
 import BtrustLogo from "@/app/assets/Btrust-white.png";
 import AbdulImg from "@/app/assets/Abdul.png";
@@ -51,25 +50,28 @@ export function GenesisWorkshop() {
   return (
     <div
       ref={containerRef}
-      className="relative min-h-screen w-full bg-[#010409] font-(family-name:--font-source-code-pro) text-white selection:bg-[#39d353] selection:text-black"
+      className="relative min-h-screen w-full bg-[#010409] font-(family-name:--font-source-code-pro) text-white selection:bg-[#39d353] selection:text-black overflow-x-hidden"
     >
-      {/* Perspective Grid Background */}
-      <div className="fixed inset-0 z-0 opacity-40 pointer-events-none">
-        <PerspectiveGrid gridSize={40} fadeRadius={95} />
-      </div>
+      {/* Subtle Background Glow Accent instead of Grid */}
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#39d353]/5 rounded-full blur-[140px] pointer-events-none z-0" />
 
       {/* Navigation */}
-      <nav className="animate-item sticky top-0 z-50 flex items-center justify-between border-b-[3px] border-black bg-[#0d1117] p-4 shadow-[0_4px_0_0_#000]">
+      <nav className="animate-item sticky top-0 z-50 flex items-center justify-between border-b-[3px] border-black bg-[#0d1117]/90 backdrop-blur-md p-4 shadow-[0_4px_0_0_#000]">
         <Link
           href="/"
-          className="flex items-center gap-2 border-[2px] border-transparent p-2 text-[#8b949e] transition-colors hover:border-black hover:bg-[#161b22] hover:text-white"
+          className="flex items-center gap-2 border-[2px] border-transparent p-2 text-[#8b949e] transition-colors hover:border-black hover:bg-[#161b22] hover:text-white cursor-pointer"
         >
           <ArrowLeft className="h-5 w-5" />
           <span className="font-bold uppercase tracking-wider">Back</span>
         </Link>
-        {/* <div className="border-[3px] border-black bg-[#39d353] px-3 py-1 font-black uppercase text-black shadow-[2px_2px_0px_0px_#000]">
-          Cohort 001
-        </div> */}
+
+        {/* Branded monospaced trademark logo */}
+        <div 
+          className="font-black text-sm uppercase tracking-tight text-white font-mono mr-2 cursor-default select-none"
+          style={{ fontFamily: "'Source Code Pro', monospace" }}
+        >
+          OSGUILD<span className="text-[#39d353]">.</span>
+        </div>
       </nav>
 
       {/* Hero Section */}
