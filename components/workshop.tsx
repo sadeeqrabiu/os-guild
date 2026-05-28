@@ -112,22 +112,8 @@ export function Workshop() {
   }
 
   return (
-    <section className="relative w-screen h-screen shrink-0 snap-center flex flex-col bg-[#010409] border-l-[3px] border-black border-dashed overflow-y-auto overflow-x-hidden" ref={containerRef}>
-      {/* Navigation Header */}
-      <nav className="animate-item sticky top-0 z-50 flex items-center justify-between border-b-[3px] border-black bg-[#0d1117] p-4 shadow-[0_4px_0_0_#000]">
-        <button
-          onClick={() => document.querySelector('main')?.scrollBy({ left: -window.innerWidth, behavior: 'smooth' })}
-          className="flex items-center gap-2 border-[2px] border-transparent p-2 text-[#8b949e] transition-colors hover:border-black hover:bg-[#161b22] hover:text-white cursor-pointer"
-          aria-label="Scroll back to Hero"
-        >
-          <ArrowLeft className="h-5 w-5" />
-          <span className="font-bold uppercase tracking-wider">Back</span>
-        </button>
-      </nav>
-
-      {/* Main Content Area */}
-      <div className="flex-1 flex flex-col justify-center py-12 px-4 sm:px-12 md:py-24 md:px-16">
-        <div className="w-full max-w-5xl mx-auto">
+    <section id="workshops" className="py-20 px-6 bg-[#010409] border-t-[3px] border-black" ref={containerRef}>
+      <div className="w-full max-w-5xl mx-auto">
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
           <div className="animate-item bg-[#238636] border-[3px] border-black inline-block px-4 py-2 shadow-[4px_4px_0px_0px_#000] -rotate-2">
             <h2 className="text-3xl sm:text-4xl md:text-6xl font-black uppercase tracking-tighter text-white">
@@ -290,7 +276,6 @@ export function Workshop() {
             </Link>
           </div>
         )}
-      </div>
       </div>
     </section>
   );

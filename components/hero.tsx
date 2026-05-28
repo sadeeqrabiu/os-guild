@@ -1,13 +1,13 @@
 "use client";
 
-import { PerspectiveGrid } from "@/components/ui/perspective-grid";
 import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { animate } from "animejs";
 import { useRouter } from "next/navigation";
-import { ArrowRight, Video, User } from "lucide-react";
+import { ArrowRight, Video } from "lucide-react";
 import Link from "next/link";
-import { useGithubAuth } from "@/hooks/useGithubAuth";
+import Image from "next/image";
+import OsportalImg from "@/app/Osportal.png";
 
 export function Hero() {
   const buttonRef = useRef<HTMLButtonElement>(null);
@@ -15,7 +15,6 @@ export function Hero() {
   const [isJoining, setIsJoining] = useState(false);
   const [isMeetingLive, setIsMeetingLive] = useState(false);
   const router = useRouter();
-  const { signInWithGithub, isLoading } = useGithubAuth();
 
   // Show "Join Meeting" only during Apr 15, 2026 5:00 PM – 6:30 PM WAT (UTC+1)
   useEffect(() => {
@@ -35,9 +34,9 @@ export function Hero() {
   const handleMouseEnter = () => {
     if (!buttonRef.current || isJoining) return;
     animate(buttonRef.current, {
-      scale: 1.05,
-      rotate: "2deg",
-      boxShadow: "8px 8px 0px 0px #000",
+      scale: 1.02,
+      rotate: "1deg",
+      boxShadow: "6px 6px 0px 0px #000",
       duration: 300,
       easing: "easeOutQuad",
     });
@@ -87,27 +86,11 @@ export function Hero() {
       ease: "outExpo"
     });
   };
-  return (
-    <section className="relative w-screen h-screen shrink-0 snap-center overflow-hidden bg-[#010409]">
-      {/* Centered Navbar */}
-      {/* <nav className="absolute top-6 left-0 right-0 z-50 flex justify-center pointer-events-auto px-4">
-        <div className="flex items-center gap-6 bg-[#0d1117] border-[3px] border-black px-6 py-2.5 shadow-[4px_4px_0px_0px_#39d353]">
-          <Link
-            href="/dashboard"
-            className="text-sm md:text-base font-black uppercase text-white hover:text-[#39d353] transition-colors"
-          >
-            Dashboard
-          </Link>
-          <div className="w-10 h-10 rounded-full border-[2px] border-[#39d353] bg-[#161b22] overflow-hidden flex items-center justify-center shadow-[2px_2px_0px_0px_#000] cursor-pointer hover:bg-[#39d353] hover:text-black transition-colors group">
-            <User className="w-5 h-5 text-[#39d353] group-hover:text-black transition-colors" />
-          </div>
-        </div>
-      </nav> */}
 
-      {/* Perspective Grid Background */}
-      <div className="absolute inset-0 opacity-40">
-        <PerspectiveGrid gridSize={40} fadeRadius={95} />
-      </div>
+  return (
+    <section className="relative min-h-[90vh] flex items-center overflow-hidden bg-[#010409] py-16 md:py-24 border-b-[3px] border-black">
+      {/* Subtle Background Glow Accent instead of Grid */}
+      <div className="absolute top-1/2 left-1/3 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#238636]/5 rounded-full blur-[140px] pointer-events-none" />
 
       {/* Portal Element */}
       <div
@@ -115,93 +98,111 @@ export function Hero() {
         className="pointer-events-none fixed z-50 hidden h-8 w-8 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#39d353] border-[3px] border-black"
       />
 
-      {/* Hero Content */}
-      <div className="hero-content pointer-events-none relative z-20 flex h-full flex-col items-center justify-center px-6 text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="pointer-events-auto flex flex-col items-center gap-8 w-full overflow-hidden"
-        >
-          {/* Announcing Marquee */}
-          <Link href="/genesis-workshop" className="w-full max-w-2xl overflow-hidden whitespace-nowrap relative cursor-pointer group -mb-2" style={{ WebkitMaskImage: "linear-gradient(to right, transparent, black 15%, black 85%, transparent)" }}>
-            <motion.div
-              animate={{ x: ["100%", "-100%"] }}
-              transition={{ repeat: Infinity, duration: 15, ease: "linear" }}
-              className="inline-block font-mono text-xs sm:text-sm font-black uppercase tracking-widest text-[#8b949e] group-hover:text-[#f85149] transition-colors"
-            >
-              *** ANNOUNCING: THE GENESIS WORKSHOP &bull; IN COLLABORATION WITH BITDEVS MAURITIUS 🇲🇺 &bull; CLICK HERE TO VIEW DETAILS ***
-            </motion.div>
-          </Link>
+      {/* Hero Content - Professional Split Grid */}
+      <div className="hero-content relative z-20 mx-auto max-w-6xl w-full px-6 flex items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center w-full">
+          
+          {/* LEFT COLUMN: HERO ACTION CONTROLS */}
+          <div className="lg:col-span-7 flex flex-col items-start text-left space-y-6 sm:space-y-8">
+            
+            {/* Mauritius + Brand Badge */}
+            <div className="flex flex-wrap items-center gap-3">
+              <span className="inline-block border-[3px] border-black bg-[#161b22] px-3.5 py-1.5 font-mono text-xs font-black uppercase tracking-wider text-[#39d353] shadow-[3.5px_3.5px_0px_0px_#000]">
+                .OS GUILD
+              </span>
+              <span className="inline-flex items-center gap-1.5 border-[3px] border-black bg-[#0d1117] px-3.5 py-1.5 font-mono text-xs font-black uppercase tracking-wider text-[#f85149] shadow-[3.5px_3.5px_0px_0px_#000]">
+                Mauritius 🇲🇺
+              </span>
+            </div>
 
-          <span className="inline-block border-[3px] border-black bg-[#161b22] px-4 py-2 font-mono text-sm font-bold uppercase tracking-wider text-[#39d353] shadow-[4px_4px_0px_0px_#000]">
-            .OS GUILD
-          </span>
+            {/* Structured Pipeline Cypherpunk Heading */}
+            <h1 className="max-w-xl text-3xl sm:text-4xl md:text-5xl font-black uppercase leading-[1.1] tracking-tight text-white">
+              A Structured Pipeline<br />
+              for Sovereign Contributors in<br />
+              <span className="inline-block -rotate-1 mt-2 border-[3px] border-black bg-[#39d353] px-4 py-1 text-black shadow-[6px_6px_0px_0px_#000] leading-none">
+                Bitcoin Open Source
+              </span>
+            </h1>
 
-          <h1 className="max-w-4xl text-5xl font-black uppercase leading-none tracking-tighter text-white sm:text-6xl md:text-7xl">
-            Build Open Source<br />
-            <span className="inline-block -rotate-2 mt-4 border-[4px] border-black bg-[#39d353] px-6 py-2 text-black shadow-[8px_8px_0px_0px_#000]">
-              Together
-            </span>
-          </h1>
+            {/* Dungeon Tagline Description */}
+            <p className="max-w-lg font-mono text-xs sm:text-sm text-[#8b949e] leading-relaxed">
+              Unlock the <span className="text-[#39d353] font-bold">GitHub dungeon ⛩️</span>. Link repositories, authenticate with Nostr keys, and route claimable micro-incentives to lightning wallets.
+            </p>
 
-          <div className="mt-8 flex flex-col sm:flex-row gap-4">
-            <button
-              ref={buttonRef}
-              onMouseEnter={handleMouseEnter}
-              onMouseLeave={handleMouseLeave}
-              onClick={handleClick}
-              className="block bg-[#39d353] px-8 py-3 text-base font-black uppercase text-black shadow-[4px_4px_0px_0px_#000] border-[3px] border-black transition-colors hover:bg-[#238636]"
-            >
-              Join Guild
-            </button>
-
-            <Link
-              href="/genesis-workshop"
-              className="group relative flex items-center justify-center bg-[#0d1117] px-8 py-3 text-base font-black uppercase text-white shadow-[4px_4px_0px_0px_#000] border-[3px] border-[#f85149] transition-all hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_#f85149] hover:text-white animate-[glow_2s_ease-in-out_infinite]"
-            >
-              <span className="absolute inset-0 bg-[#f85149]/10 opacity-0 group-hover:opacity-100 transition-opacity" />
-              <span className="relative">Genesis Workshop</span>
-            </Link>
-
-            {/* <button
-              onClick={signInWithGithub}
-              disabled={isLoading}
-              className="flex items-center justify-center bg-[#0d1117] px-8 py-3 text-base font-black uppercase text-white shadow-[4px_4px_0px_0px_#000] border-[3px] border-black transition-all hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_#39d353] hover:text-[#39d353] disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              {isLoading ? "Connecting..." : "Sign Up with GitHub"}
-            </button> */}
-
-            {isMeetingLive && (
+            {/* CTAs Row */}
+            <div className="flex flex-wrap gap-4 w-full sm:w-auto pt-2">
               <button
-                onClick={() => {
-                  // Scroll to workshop section, then trigger the meeting
-                  const main = document.querySelector('main');
-                  main?.scrollBy({ left: window.innerWidth, behavior: 'smooth' });
-                  // Dispatch a custom event that Workshop listens for
-                  setTimeout(() => {
-                    window.dispatchEvent(new CustomEvent('open-jitsi-meeting'));
-                  }, 800);
-                }}
-                className="group relative flex items-center gap-2 px-8 py-3 text-base font-black uppercase text-white border-[3px] border-[#f85149] bg-[#0d1117] shadow-[4px_4px_0px_0px_#000] transition-all hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_#f85149] animate-[glow_2s_ease-in-out_infinite]"
+                ref={buttonRef}
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
+                onClick={handleClick}
+                className="w-full sm:w-auto bg-[#39d353] px-8 py-3.5 text-sm font-black uppercase text-black shadow-[4px_4px_0px_0px_#000] border-[3px] border-black transition-all hover:bg-[#238636] active:translate-y-0.5 active:shadow-[2px_2px_0px_0px_#000] cursor-pointer text-center"
               >
-                <span className="absolute inset-0 bg-[#f85149]/10 opacity-0 group-hover:opacity-100 transition-opacity" />
-                <Video className="h-5 w-5 text-[#f85149] group-hover:text-white transition-colors" />
-                <span className="relative">Join Meeting</span>
+                Join Guild
               </button>
-            )}
+
+              <Link
+                href="/genesis-workshop"
+                className="w-full sm:w-auto text-center group relative flex items-center justify-center bg-[#0d1117] px-8 py-3.5 text-sm font-black uppercase text-white shadow-[4px_4px_0px_0px_#000] border-[3px] border-[#f85149] transition-all hover:-translate-y-0.5 hover:shadow-[5px_5px_0px_0px_#f85149] hover:text-[#f85149]"
+              >
+                <span className="relative">Genesis Workshop</span>
+              </Link>
+
+              {isMeetingLive && (
+                <button
+                  onClick={() => {
+                    const el = document.getElementById("workshops");
+                    el?.scrollIntoView({ behavior: "smooth" });
+                    setTimeout(() => {
+                      window.dispatchEvent(new CustomEvent('open-jitsi-meeting'));
+                    }, 800);
+                  }}
+                  className="w-full sm:w-auto group relative flex items-center justify-center gap-2 px-8 py-3.5 text-sm font-black uppercase text-white border-[3px] border-[#f85149] bg-[#0d1117] shadow-[4px_4px_0px_0px_#000] transition-all hover:-translate-y-0.5 hover:shadow-[5px_5px_0px_0px_#f85149] animate-[glow_2s_ease-in-out_infinite] cursor-pointer"
+                >
+                  <span className="absolute inset-0 bg-[#f85149]/10 opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <Video className="h-4 w-4 text-[#f85149] group-hover:text-white transition-colors" />
+                  <span className="relative">Join Meeting</span>
+                </button>
+              )}
+            </div>
+
           </div>
-        </motion.div>
+
+          {/* RIGHT COLUMN: WEBVIEW PORTAL MOCKUP (HIDDEN ON MOBILE) */}
+          <div className="hidden lg:block lg:col-span-5 relative z-10 shrink-0">
+            {/* Neo-brutalist Mockup Frame Wrapper */}
+            <div className="border-[4px] border-black bg-[#0d1117] p-3 shadow-[10px_10px_0px_0px_#238636] relative scanlines hover:shadow-[12px_12px_0px_0px_#39d353] hover:border-[#39d353]/30 transition-all">
+              <div className="mb-2.5 flex items-center justify-between border-b border-[#30363d] pb-2 font-mono text-[9px] text-[#8b949e]">
+                <span className="flex items-center gap-1.5">
+                  <span className="h-2 w-2 rounded-full bg-[#f85149]" />
+                  <span className="h-2 w-2 rounded-full bg-[#d29922]" />
+                  <span className="h-2 w-2 rounded-full bg-[#39d353]" />
+                </span>
+                <span>OS_PORTAL_SIGNAL.EXE</span>
+              </div>
+              <Image 
+                src={OsportalImg} 
+                alt="OSGuild Sovereignty Interface Portal" 
+                className="w-full object-cover border-2 border-black"
+                priority
+              />
+              <p className="mt-2.5 font-mono text-[8px] text-[#484f58] uppercase tracking-wider text-center">
+                Visual demonstration &bull; Cryptographic Contributor Terminal
+              </p>
+            </div>
+          </div>
+
+        </div>
       </div>
 
-      {/* Blinking Scroll Arrow */}
+      {/* Blinking Scroll Arrow - Scrolls to About Section */}
       <button
-        onClick={() => document.querySelector('main')?.scrollBy({ left: window.innerWidth, behavior: 'smooth' })}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 md:bottom-1/2 md:translate-y-1/2 md:left-auto md:-translate-x-0 md:right-8 flex flex-row md:flex-col items-center gap-2 md:gap-4 animate-pulse text-[#39d353] hover:text-white transition-colors cursor-pointer border-none bg-transparent"
-        aria-label="Scroll to Workshop"
+        onClick={() => document.getElementById("about")?.scrollIntoView({ behavior: "smooth" })}
+        className="absolute bottom-4 left-1/2 -translate-x-1/2 flex flex-row items-center gap-2 animate-pulse text-[#39d353] hover:text-white transition-colors cursor-pointer border-none bg-transparent"
+        aria-label="Scroll to About Section"
       >
-        <span className="font-mono text-sm font-bold uppercase md:rotate-90 tracking-widest whitespace-nowrap md:mb-6">Scroll</span>
-        <ArrowRight className="w-8 h-8" />
+        <span className="font-mono text-[10px] font-bold uppercase tracking-widest whitespace-nowrap">Scroll Down</span>
+        <ArrowRight className="w-5 h-5 rotate-90" />
       </button>
     </section>
   );
