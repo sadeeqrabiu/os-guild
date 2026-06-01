@@ -711,7 +711,7 @@ export function BitnobProposal() {
                   </span>
                   <Award className="h-5 w-5 text-gray-400" />
                 </div>
-                <h4 className="text-xl font-black uppercase text-white">Ecosystem Partner</h4>
+                <h4 className="text-xl font-black uppercase text-white">Community Pillar</h4>
                 <div className="font-mono text-3xl font-black text-gray-300 mt-2 mb-6">
                   $3,000
                 </div>
@@ -759,7 +759,7 @@ export function BitnobProposal() {
                   </span>
                   <Sparkles className="h-5 w-5 text-[#39d353] animate-pulse" />
                 </div>
-                <h4 className="text-xl font-black uppercase text-white">Founding Partner</h4>
+                <h4 className="text-xl font-black uppercase text-white">Genesis Catalyst</h4>
                 <div className="font-mono text-3xl font-black text-[#39d353] mt-2 mb-6">
                   $5,000+
                 </div>
