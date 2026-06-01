@@ -107,9 +107,6 @@ export function Hero() {
             
             {/* Mauritius + Brand Badge */}
             <div className="flex flex-wrap items-center gap-3">
-              <span className="inline-block border-[3px] border-black bg-[#161b22] px-3.5 py-1.5 font-mono text-xs font-black uppercase tracking-wider text-[#39d353] shadow-[3.5px_3.5px_0px_0px_#000]">
-                .OS GUILD
-              </span>
               <span className="inline-flex items-center gap-1.5 border-[3px] border-black bg-[#0d1117] px-3.5 py-1.5 font-mono text-xs font-black uppercase tracking-wider text-[#f85149] shadow-[3.5px_3.5px_0px_0px_#000]">
                 Mauritius 🇲🇺
               </span>
