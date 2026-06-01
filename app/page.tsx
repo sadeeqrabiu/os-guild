@@ -3,6 +3,7 @@ import { Hero } from "@/components/hero";
 import { Metrics } from "@/components/metrics";
 import { About } from "@/components/about";
 import { Pathway } from "@/components/pathway";
+import { ArchitectCLI } from "@/components/architect-cli";
 import { Pillars } from "@/components/pillars";
 import { Workshop } from "@/components/workshop";
 import { FAQ } from "@/components/faq";
@@ -15,6 +16,7 @@ export default function Home() {
       <Hero />
       <Metrics />
       <About />
+      <ArchitectCLI />
       <Pathway />
       <Pillars />
       <Workshop />
@@ -23,3 +25,4 @@ export default function Home() {
     </div>
   );
 }
+

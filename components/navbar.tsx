@@ -33,6 +33,7 @@ export function Navbar() {
             {[
               { label: "About", id: "about" },
               { label: "Curriculum", id: "pathway" },
+              { label: "Architect CLI", id: "cli" },
               { label: "Workshops", id: "workshops" },
               { label: "FAQs", id: "faq" }
             ].map((item) => (

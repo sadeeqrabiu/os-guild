@@ -731,7 +731,7 @@ export function BitnobProposal() {
                       <span><strong>Showcase Spotlight:</strong> Priority access to test, review, and hire emerging builders from the sandbox project showcase.</span>
                     </li>
                     <li className="flex items-start gap-2 text-gray-400 italic">
-                      <span>* Includes all benefits of Genesis Catalyst.</span>
+                      <span>* Includes all benefits of Sovereign Visionary.</span>
                     </li>
                   </ul>
                 </CollapsibleContainer>
