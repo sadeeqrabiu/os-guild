@@ -20,6 +20,31 @@ const sourceCodePro = Source_Code_Pro({
 export const metadata: Metadata = {
   title: "OSGuild",
   description: "Build Open Source, Together",
+  metadataBase: new URL("https://www.osguild.dev"),
+  openGraph: {
+    title: "OS Guild — Build Open Source, Together",
+    description:
+      "OS Guild is a community where developers collaborate to build impactful open source projects.",
+    url: "https://www.osguild.dev",
+    siteName: "OS Guild",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "OS Guild — Build Open Source, Together",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "OS Guild — Build Open Source, Together",
+    description:
+      "OS Guild is a community where developers collaborate to build impactful open source projects.",
+    images: ["/og-image.png"],
+  },
 };
 
 export default function RootLayout({
