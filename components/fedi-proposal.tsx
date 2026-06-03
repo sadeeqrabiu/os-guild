@@ -36,7 +36,7 @@ import {
 } from "lucide-react";
 
 // Import local assets
-import FediLogoImg from "@/app/assets/fedilogo.avif";
+import FediLogoImg from "@/app/assets/fedilogo.png";
 import BtrustLogoImg from "@/app/assets/Btrust-white.png";
 
 // Helper for count-up animation
