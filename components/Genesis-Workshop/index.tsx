@@ -15,6 +15,7 @@ import SadiqImg from "@/app/assets/Sadiq.jpg";
 export function GenesisWorkshop() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isTextExpanded, setIsTextExpanded] = useState(false);
+  const [showRsvpModal, setShowRsvpModal] = useState(false);
 
   useEffect(() => {
     const elements = containerRef.current?.querySelectorAll(".animate-item");
@@ -167,9 +168,9 @@ export function GenesisWorkshop() {
         {/* Speakers Section */}
         <section className="animate-item mb-24">
           <h2 className="mb-8 inline-block border-b-[4px] border-white text-2xl font-black uppercase tracking-tighter sm:text-3xl text-white">
-            Speakers
+            Line up coming soon
           </h2>
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {/* <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {[
               // { name: "Abdul", img: AbdulImg, role: "Bitcoin Engineer" },
               { name: "Bruno", img: BrunoImg, role: "Core Contributor" },
@@ -194,7 +195,7 @@ export function GenesisWorkshop() {
                 </div>
               </div>
             ))}
-          </div>
+          </div> */}
         </section>
 
         {/* Sponsors */}
@@ -237,17 +238,81 @@ export function GenesisWorkshop() {
           <p className="mb-10 max-w-xl text-sm font-bold text-black/80 sm:text-base md:text-lg">
             This isn&apos;t a bootcamp to learn basic web dev. This is a proving ground for engineers ready to maintain the most critical network on earth.
           </p>
-          <Link
-            href="/genesis-workshop/form"
+          <button
+            type="button"
+            onClick={() => setShowRsvpModal(true)}
             onMouseEnter={handleHover}
             onMouseLeave={handleLeave}
-            className="block border-[4px] border-black bg-white px-8 py-5 text-lg font-black uppercase text-black shadow-[4px_4px_0px_0px_#000] transition-colors hover:bg-gray-100 sm:text-xl"
+            className="block border-[4px] border-black bg-white px-8 py-5 text-lg font-black uppercase text-black shadow-[4px_4px_0px_0px_#000] transition-colors hover:bg-gray-100 sm:text-xl cursor-pointer"
           >
             Apply to Workshop
-          </Link>
+          </button>
         </section>
       </main>
-    </div >
+
+      {/* RSVP Coming Soon Modal */}
+      {showRsvpModal && (
+        <div
+          className="fixed inset-0 z-[100] flex items-center justify-center p-4"
+          onClick={() => setShowRsvpModal(false)}
+        >
+          {/* Backdrop */}
+          <div className="absolute inset-0 bg-black/80 backdrop-blur-sm" />
+
+          {/* Modal Card */}
+          <div
+            className="relative z-10 w-full max-w-md border-[4px] border-black bg-[#0d1117] p-8 shadow-[12px_12px_0px_0px_#39d353] animate-[fadeSlideUp_0.25s_ease-out_forwards]"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Top accent bar */}
+            <div className="absolute top-0 left-0 right-0 h-[4px] bg-[#39d353]" />
+
+            {/* Close button */}
+            <button
+              type="button"
+              onClick={() => setShowRsvpModal(false)}
+              className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center border-[2px] border-black bg-[#161b22] text-gray-400 hover:text-white hover:bg-[#21262d] transition-all font-black text-sm shadow-[2px_2px_0px_0px_#000] cursor-pointer"
+              aria-label="Close"
+            >
+              ✕
+            </button>
+
+            {/* Content */}
+            <div className="text-center pt-2">
+              <div className="mb-4 inline-flex items-center gap-2 border-[2px] border-[#39d353]/40 bg-[#39d353]/10 px-3 py-1 text-[10px] font-black uppercase tracking-widest text-[#39d353]">
+                <span className="inline-block w-1.5 h-1.5 rounded-full bg-[#39d353] animate-pulse" />
+                Status: Opening Soon
+              </div>
+
+              <h3 className="mb-3 text-3xl font-black uppercase leading-tight tracking-tight text-white">
+                Registration 
+                <span className="text-[#39d353]"> Coming</span>
+                <br />Soon
+              </h3>
+
+              <p className="mb-8 text-sm text-[#8b949e] leading-relaxed max-w-xs mx-auto">
+                Applications for the Genesis Workshop are not yet open. Drop your email to be the first notified when RSVP goes live.
+              </p>
+
+              <a
+                href="mailto:info@osguild.dev?subject=Genesis Workshop — Notify Me"
+                className="block w-full border-[3px] border-black bg-[#39d353] hover:bg-[#2ea44f] text-black py-3.5 text-sm font-black uppercase tracking-wider shadow-[4px_4px_0px_0px_#000] active:translate-x-[2px] active:translate-y-[2px] active:shadow-[2px_2px_0px_0px_#000] transition-all"
+              >
+                Notify Me — info@osguild.dev
+              </a>
+
+              <button
+                type="button"
+                onClick={() => setShowRsvpModal(false)}
+                className="mt-4 text-xs text-gray-500 hover:text-gray-300 transition-colors uppercase tracking-wider font-bold cursor-pointer bg-transparent border-none"
+              >
+                Dismiss
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
   );
 }
 
