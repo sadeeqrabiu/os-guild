@@ -13,7 +13,7 @@ import {
   Users, 
   Code, 
   TrendingUp, 
-  Sparkles, 
+  Zap, 
   ArrowRight,
   ExternalLink,
   Mail,
@@ -252,7 +252,7 @@ export function FediProposal() {
       id: 0,
       title: "Stage 0: Genesis Workshop",
       subtitle: "Mauritius Pilot & Twin-Track Onboarding",
-      desc: "An intensive 2-epoch hands-on workshop onboarding software developers to the Fedimint React SDK (Track A) and community coordinators to Fedi Community Superapp configurations (Track B).",
+      desc: "An intensive 2-epoch hands-on workshop onboarding software developers to the Osguild 6weeks pathyway.",
       metric: "50+ Activated Builders & Leaders",
       duration: "Event Launch",
       color: "border-[#39d353] shadow-[#39d353]/20 text-[#39d353]"
@@ -261,8 +261,7 @@ export function FediProposal() {
       id: 1,
       title: "Stage 1: Foundation",
       subtitle: "6-Week mentored open source workflows",
-      desc: "Graduates commit to structured sprints. Technical builders submit PRs into core Fedi/Fedimint repositories while organizers coordinate community groups and localized merchant mint configurations.",
-      metric: "6-Week Guided Cohort",
+      desc: "Graduates commit to structured sprints. Technical builders submit PRs into core examples FOSS repositories",
       duration: "Months 1 - 2",
       color: "border-[#238636] shadow-[#238636]/20 text-[#238636]"
     },
@@ -270,8 +269,8 @@ export function FediProposal() {
       id: 2,
       title: "Stage 2: Specialization",
       subtitle: "Btrust Builders Program Integration",
-      desc: "Deep integration with protocol-level development. Technical attendees design custom widgets and mobile mini-apps, while non-technical leads design stablecoin-denominated community voucher federations.",
-      metric: "Protocol & Mobile Deep Dives",
+      desc: "Deep integration with protocol-level understanding, example production roles in FOSS while earning Stats on quality PRs.",
+      metric: "Protocol & FOSS Deep Dives",
       duration: "Months 3 - 4",
       color: "border-[#f85149] shadow-[#f85149]/20 text-[#f85149]"
     },
@@ -279,7 +278,7 @@ export function FediProposal() {
       id: 3,
       title: "Stage 3: Career Track",
       subtitle: "Professional Placement & BOSS Program",
-      desc: "Guiding contributors into production roles. Technical engineers build scalable features under scrutiny, while coordinators establish sustainable community mint operations in Port Louis.",
+      desc: "Guiding contributors into production roles. Technical engineers build scalable features under scrutiny, while coordinators establish sustainable outcomes.",
       metric: "Independent Workflows",
       duration: "Months 5 - 6",
       color: "border-[#39d353] shadow-[#39d353]/20 text-[#39d353]"
@@ -288,7 +287,7 @@ export function FediProposal() {
       id: 4,
       title: "Stage 4: Sovereign Independence",
       subtitle: "Grants & Advanced Audit Operations",
-      desc: "Reaching absolute ecosystem self-sovereignty. Top builders secure direct development grants for Fedi extensions, and local leads host independent educational cohorts across East Africa.",
+      desc: "Reaching absolute ecosystem self-sovereignty. Top builders secure direct development grants to advance there career into FOSS",
       metric: "Ecosystem Leadership",
       duration: "Ongoing Growth",
       color: "border-[#238636] shadow-[#238636]/20 text-[#238636]"
@@ -318,8 +317,7 @@ export function FediProposal() {
             OSGUILD<span className="text-[#39d353]">.</span>
           </span>
           <div className="h-4 w-[2px] bg-[#30363d]" />
-          <div className="flex items-center gap-1 border border-[#39d353]/30 bg-[#39d353]/10 px-2.5 py-0.5 rounded text-[10px] sm:text-xs font-black uppercase text-[#39d353] tracking-widest shadow-[0_0_10px_rgba(57,211,83,0.1)]">
-            <Sparkles className="h-3 w-3 inline mr-0.5 animate-pulse" />
+         <div className="flex items-center gap-1 border  px-2.5 py-0.5 rounded text-[10px] sm:text-xs font-black uppercase text-[#39d353] tracking-widest shadow-[0_0_10px_rgba(57,211,83,0.1)]">
             Fedi Proposal
           </div>
         </div>
@@ -550,7 +548,7 @@ export function FediProposal() {
 
             <div className="border-[3px] border-black bg-[#0d1117] p-6 shadow-[4px_4px_0px_0px_#000] border-t-[6px] border-t-[#238636] md:col-span-2 lg:col-span-2">
               <div className="flex items-center gap-2 mb-4 text-[#238636]">
-                <Sparkles className="h-5 w-5" />
+                <Zap className="h-5 w-5" />
                 <h4 className="text-base font-black uppercase text-white">Fedi Mauritius Community</h4>
               </div>
               <p className="text-xs text-[#8b949e] leading-relaxed">
@@ -653,15 +651,15 @@ export function FediProposal() {
                 title: "Activated Contributors",
                 value: 20,
                 suffix: "+",
-                desc: "Developers submitting code and coordinators deploying custom mini-apps to their local groups.",
+                desc: "Developers submitting code and coordinators deploying custom federation to their local groups.",
                 border: "border-black",
                 tag: "PROOF OF WORK"
               },
               {
                 title: "Applications Explored",
-                value: 5,
+                value: 2,
                 suffix: "+",
-                desc: "Functional mini-apps and Fedi Superapp local marketplace templates configured by students.",
+                desc: "Functional mini-apps.",
                 border: "border-black",
                 tag: "ECOSYSTEM VALUE"
               },
@@ -741,8 +739,7 @@ export function FediProposal() {
               VALUE PROPOSITION
             </span>
             <p className="text-sm sm:text-base font-bold text-gray-200 leading-relaxed max-w-4xl">
-              Genesis gives Fedi an opportunity to invest in the next generation of Bitcoin contributors and community leaders while establishing an early presence in a growing sovereign technology ecosystem.
-            </p>
+Genesis gives Fedi an opportunity to support the growth of Bitcoin contributors and sovereign communities in an underserved region while establishing an early presence in a developing Bitcoin ecosystem.            </p>
           </div>
         </section>
 
@@ -817,15 +814,11 @@ export function FediProposal() {
                   <ul className="text-xs text-gray-300 flex flex-col gap-4 border-t border-gray-800 pt-6">
                     <li className="flex items-start gap-2">
                       <span className="text-gray-400 font-bold">✔</span>
-                      <span><strong>Featured Landing Page Spot:</strong> Direct logo placement on the OS-Guild brutalist website.</span>
+                      <span><strong>Workshop Analytics:</strong> Post-event impact report detailing community growth and custom mini-app configurations.</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <span className="text-gray-400 font-bold">✔</span>
-                      <span><strong>Developer & Organizer Analytics:</strong> Post-event impact report detailing GitHub PR metrics and custom mini-app configurations.</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-gray-400 font-bold">✔</span>
-                      <span><strong>Local Mini-App Showcase:</strong> Priority access to test and review the sandbox projects developed.</span>
+                      <span><strong>Spotlight Spotlight:</strong> Of the Fedi Community Superapp usecases.</span>
                     </li>
                     <li className="flex items-start gap-2 text-gray-400 italic">
                       <span>* Includes all benefits of Sovereign Visionary.</span>
@@ -854,7 +847,7 @@ export function FediProposal() {
                   <span className="text-[10px] font-black uppercase tracking-wider text-[#39d353] bg-[#39d353]/10 px-2.5 py-0.5 rounded border border-[#39d353]/20">
                     Tier 1
                   </span>
-                  <Sparkles className="h-5 w-5 text-[#39d353] animate-pulse" />
+                  <Zap className="h-5 w-5 text-[#39d353] animate-pulse" />
                 </div>
                 <h4 className="text-xl font-black uppercase text-white">Genesis Catalyst</h4>
                 <div className="font-mono text-3xl font-black text-[#39d353] mt-2 mb-6">
@@ -865,22 +858,14 @@ export function FediProposal() {
                   <ul className="text-xs text-gray-300 flex flex-col gap-4 border-t border-gray-800 pt-6">
                     <li className="flex items-start gap-2">
                       <span className="text-[#39d353] font-bold">✔</span>
-                      <span><strong>Keynote & Tech Integration:</strong> Direct collaborative design of Fedimint SDK challenges & opening address.</span>
+                      <span><strong>Keynote:</strong> Keynote speaker at the Workshop event</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <span className="text-[#39d353] font-bold">✔</span>
-                      <span><strong>Post-Event Mentorship:</strong> Co-sponsor the subsequent 6-week cohort, guiding top-performing developers.</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-[#39d353] font-bold">✔</span>
-                      <span><strong>Local Champion Sourcing:</strong> Involvement in onboarding local teams to lead community-focused Fedi initiatives.</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-[#39d353] font-bold">✔</span>
-                      <span><strong>Sovereign Breakout Sessions:</strong> Conduct specialized technical deep-dives and developer roundtables focusing on the deployment, integration, and scaling of the Fedi Community Superapp.</span>
+                      <span><strong>Sovereign Breakout Sessions:</strong> Conduct specialized Fedi deep-dives and roundtables focusing on the Conducting deep-dives on federated self-custody principles, privacy-first communications, integration, and scaling of the Fedi Community Superapp.</span>
                     </li>
                     <li className="flex items-start gap-2 text-[#39d353] italic">
-                      <span>* Includes all benefits of Supporting & Community Partner.</span>
+                      <span>* Includes all benefits of sovereign visionary & Community Pillar.</span>
                     </li>
                   </ul>
                 </CollapsibleContainer>
@@ -890,7 +875,7 @@ export function FediProposal() {
                 onClick={() => openPledge("Genesis Catalyst — $5,000+")}
                 className="mt-8 w-full border-[2px] border-black bg-[#39d353] hover:bg-[#2ea44f] text-black py-3 text-xs font-black uppercase tracking-wider shadow-[3px_3px_0px_0px_#000] active:translate-x-[2px] active:translate-y-[2px] active:shadow-[1px_1px_0px_0px_#000] transition-all cursor-pointer rounded-sm"
               >
-                Secure Sponsorship Pass
+                Pledge Support
               </button>
             </div>
 

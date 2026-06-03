@@ -13,7 +13,7 @@ import {
   Users, 
   Code, 
   TrendingUp, 
-  Sparkles, 
+  Zap, 
   ArrowRight,
   ExternalLink,
   Mail,
@@ -155,49 +155,48 @@ export function BitnobProposal() {
     setShowPledgeModal(true);
   };
 
-  const stages = [
+    const stages = [
     {
       id: 0,
       title: "Stage 0: Genesis Workshop",
-      subtitle: "Developer Onboarding & API Integration Sprints",
-      desc: "An intensive technical workshop onboarding software developers to the Bitnob API and checkout widgets. Focuses on setting up merchant Lightning checkouts, savings apps, and automated savings integrations.",
-      metric: "50+ Activated Builders",
+      subtitle: "Mauritius Pilot & Twin-Track Onboarding",
+      desc: "An intensive 2-epoch hands-on workshop onboarding software developers to the Osguild 6weeks pathyway.",
+      metric: "50+ Activated Builders & Leaders",
       duration: "Event Launch",
       color: "border-[#39d353] shadow-[#39d353]/20 text-[#39d353]"
     },
     {
       id: 1,
       title: "Stage 1: Foundation",
-      subtitle: "6-Week mentored open source API sprints",
-      desc: "Graduates commit to structured code sprints. Technical builders submit features, wrappers, and documentation directly into core Bitnob API developer ecosystems and open-source payment libraries.",
-      metric: "6-Week Guided Cohort",
+      subtitle: "6-Week mentored open source workflows",
+      desc: "Graduates commit to structured sprints. Technical builders submit PRs into core examples FOSS repositories",
       duration: "Months 1 - 2",
       color: "border-[#238636] shadow-[#238636]/20 text-[#238636]"
     },
     {
       id: 2,
       title: "Stage 2: Specialization",
-      subtitle: "Custom Lightning App Development",
-      desc: "Advanced training integrating Bitnob APIs with protocol-level lightning networks. Attendees design customized multisig custody structures, merchant invoicing pipelines, and stablecoin voucher systems.",
-      metric: "Lightning Deep Dives",
+      subtitle: "Btrust Builders Program Integration",
+      desc: "Deep integration with protocol-level understanding, example production roles in FOSS while earning Stats on quality PRs.",
+      metric: "Protocol & FOSS Deep Dives",
       duration: "Months 3 - 4",
       color: "border-[#f85149] shadow-[#f85149]/20 text-[#f85149]"
     },
     {
       id: 3,
       title: "Stage 3: Career Track",
-      subtitle: "Professional Developer Placement",
-      desc: "Placement of certified technical graduates into production open-source roles, Bitcoin developer internships, and professional fintech integrations throughout Africa.",
-      metric: "Professional Placements",
+      subtitle: "Professional Placement & BOSS Program",
+      desc: "Guiding contributors into production roles. Technical engineers build scalable features under scrutiny, while coordinators establish sustainable outcomes.",
+      metric: "Independent Workflows",
       duration: "Months 5 - 6",
       color: "border-[#39d353] shadow-[#39d353]/20 text-[#39d353]"
     },
     {
       id: 4,
       title: "Stage 4: Sovereign Independence",
-      subtitle: "Grants & Regional Ecosystem Leadership",
-      desc: "Reaching absolute technical independence. Top performing graduates secure direct development grants to build sovereign regional apps and expand grassroots developer cohorts across East Africa.",
-      metric: "Ecosystem Project Grants",
+      subtitle: "Grants & Advanced Audit Operations",
+      desc: "Reaching absolute ecosystem self-sovereignty. Top builders secure direct development grants to advance there career into FOSS",
+      metric: "Ecosystem Leadership",
       duration: "Ongoing Growth",
       color: "border-[#238636] shadow-[#238636]/20 text-[#238636]"
     }
@@ -226,8 +225,8 @@ export function BitnobProposal() {
             OSGUILD<span className="text-[#39d353]">.</span>
           </span>
           <div className="h-4 w-[2px] bg-[#30363d]" />
-          <div className="flex items-center gap-1 border border-[#39d353]/30 bg-[#39d353]/10 px-2.5 py-0.5 rounded text-[10px] sm:text-xs font-black uppercase text-[#39d353] tracking-widest shadow-[0_0_10px_rgba(57,211,83,0.1)]">
-            <Sparkles className="h-3 w-3 inline mr-0.5 animate-pulse" />
+          <div className="flex items-center gap-1 border px-2.5 py-0.5 rounded text-[10px] sm:text-xs font-black uppercase text-[#39d353] tracking-widest shadow-[0_0_10px_rgba(57,211,83,0.1)]">
+        
             Bitnob Proposal
           </div>
         </div>
@@ -380,7 +379,7 @@ export function BitnobProposal() {
                 <h4 className="text-sm font-black uppercase text-white">Explosion of Academic Talent</h4>
               </div>
               <p className="text-xs text-[#8b949e] leading-relaxed pl-7">
-                High interest and Software Engineering capability from students at the <strong className="text-white">University of Mauritius</strong> eager to build production-grade financial applications.
+                High interest and Software Engineering capability from students at the <strong className="text-white">University of Mauritius and othe institutions</strong> eager to build production-grade financial applications.
               </p>
             </div>
 
@@ -458,7 +457,7 @@ export function BitnobProposal() {
 
             <div className="border-[3px] border-black bg-[#0d1117] p-6 shadow-[4px_4px_0px_0px_#000] border-t-[6px] border-t-[#238636] md:col-span-2 lg:col-span-2">
               <div className="flex items-center gap-2 mb-4 text-[#238636]">
-                <Sparkles className="h-5 w-5" />
+                <Zap className="h-5 w-5" />
                 <h4 className="text-base font-black uppercase text-white">Bitnob Developer Pipeline</h4>
               </div>
               <p className="text-xs text-[#8b949e] leading-relaxed">
@@ -671,7 +670,7 @@ export function BitnobProposal() {
                   </span>
                   <Award className="h-5 w-5 text-amber-600" />
                 </div>
-                <h4 className="text-xl font-black uppercase text-white">Genesis Catalyst</h4>
+                <h4 className="text-xl font-black uppercase text-white">Sovereign Visionary</h4>
                 <div className="font-mono text-3xl font-black text-amber-500 mt-2 mb-6">
                   $1,500
                 </div>
@@ -720,11 +719,7 @@ export function BitnobProposal() {
                   <ul className="text-xs text-gray-300 flex flex-col gap-4 border-t border-gray-800 pt-6">
                     <li className="flex items-start gap-2">
                       <span className="text-gray-400 font-bold">✔</span>
-                      <span><strong>Featured Landing Page Spot:</strong> Direct logo placement on the OS-Guild webpage.</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-gray-400 font-bold">✔</span>
-                      <span><strong>Developer Analytics:</strong> Post-cohort impact report detailing GitHub PR metrics and custom checkouts developed.</span>
+                      <span><strong>Workshop Analytics:</strong> Post-event impact report detailing community growth and custom mini-app configurations.</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <span className="text-gray-400 font-bold">✔</span>
@@ -757,7 +752,7 @@ export function BitnobProposal() {
                   <span className="text-[10px] font-black uppercase tracking-wider text-[#39d353] bg-[#39d353]/10 px-2.5 py-0.5 rounded border border-[#39d353]/20">
                     Tier 1
                   </span>
-                  <Sparkles className="h-5 w-5 text-[#39d353] animate-pulse" />
+                  <Zap className="h-5 w-5 text-[#39d353] animate-pulse" />
                 </div>
                 <h4 className="text-xl font-black uppercase text-white">Genesis Catalyst</h4>
                 <div className="font-mono text-3xl font-black text-[#39d353] mt-2 mb-6">
@@ -789,7 +784,7 @@ export function BitnobProposal() {
                 onClick={() => openPledge("Founding Partner — $5,000+")}
                 className="mt-8 w-full border-[2px] border-black bg-[#39d353] hover:bg-[#2ea44f] text-black py-3 text-xs font-black uppercase tracking-wider shadow-[3px_3px_0px_0px_#000] active:translate-x-[2px] active:translate-y-[2px] active:shadow-[1px_1px_0px_0px_#000] transition-all cursor-pointer rounded-sm"
               >
-                Secure Sponsorship Pass
+                Pledge Support
               </button>
             </div>
 
