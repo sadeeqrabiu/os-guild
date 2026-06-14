@@ -183,13 +183,6 @@ export function BtcxxSlides() {
             <span className="text-xs text-[#8b949e] font-black uppercase">
               BTC++ Talk <span className="text-[#39d353]">Slide {slide + 1}/{SLIDES.length}</span>
             </span>
-            <button
-              onClick={() => setShowNotes(!showNotes)}
-              className="flex items-center gap-1.5 border-[2px] border-black bg-[#161b22] px-3 py-1 text-xs font-black uppercase text-[#39d353] hover:bg-white hover:text-black transition-all shadow-[2px_2px_0_0_#000] cursor-pointer"
-            >
-              <Terminal className="h-3.5 w-3.5" />
-              <span>{showNotes ? "Hide Notes" : "Show Notes"}</span>
-            </button>
           </div>
         </header>
 
@@ -276,37 +269,6 @@ export function BtcxxSlides() {
           </button>
         </footer>
       </div>
-
-      {/* Speaker Notes Drawer */}
-      {showNotes && (
-        <aside className="w-full md:w-80 border-t-[3px] md:border-t-0 md:border-l-[3px] border-black bg-[#0d1117] p-6 z-10 flex flex-col justify-between shrink-0 shadow-[-4px_0_0_0_#000] font-mono">
-          <div className="flex flex-col gap-6">
-            <div className="flex items-center gap-2 border-b-[2px] border-black pb-3">
-              <Terminal className="h-5 w-5 text-[#39d353]" />
-              <span className="text-sm font-black uppercase tracking-wider text-white">SPEAKER MONITOR</span>
-            </div>
-
-            <div className="bg-[#010409] border-[2px] border-black p-4 text-xs shadow-[2px_2px_0_0_#000] relative">
-              <span className="absolute top-0 right-2 text-[8px] font-bold text-[#8b949e] uppercase">slide details</span>
-              <p className="text-[#39d353] font-bold uppercase mb-1">Goal:</p>
-              <p className="text-gray-300 leading-relaxed font-sans">{SLIDES[slide].goal}</p>
-            </div>
-
-            <div className="flex flex-col gap-2">
-              <span className="text-[10px] font-black uppercase text-[#8b949e] tracking-widest block">SPEAKER SCRIPT:</span>
-              <p className="text-sm text-gray-300 leading-relaxed font-sans border-l-[2px] border-gray-700 pl-3 py-1 max-h-[300px] overflow-y-auto">
-                {SLIDES[slide].speakerNotes}
-              </p>
-            </div>
-          </div>
-
-          <div className="mt-8 border-t border-gray-800 pt-4 text-center">
-            <p className="text-[9px] font-black uppercase text-gray-500">
-              Bitcoin++ Technical Session &bull; Sadiq OSG
-            </p>
-          </div>
-        </aside>
-      )}
     </div>
   );
 }
@@ -866,18 +828,6 @@ function Slide10Interactive({ quote }: { quote?: { text: string; author: string 
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
-        {/* Quote Block */}
-        <div className="border-[2px] border-black bg-[#161b22] p-5 shadow-[4px_4px_0_0_#000] flex flex-col justify-between">
-          {quote && (
-            <>
-              <p className="text-sm text-gray-200 italic leading-relaxed mb-4">
-                &ldquo;{quote.text}&rdquo;
-              </p>
-              <p className="text-xs text-[#8b949e] font-black text-right">— {quote.author}</p>
-            </>
-          )}
-        </div>
-
         {/* Glowing Orange Logo summary box */}
         <div className="border-[2px] border-black bg-[#0d1117] p-5 shadow-[4px_4px_0_0_#f0883e] flex flex-col items-center justify-center text-center">
           {complete ? (
