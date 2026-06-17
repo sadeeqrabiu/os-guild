@@ -135,6 +135,13 @@ const SLIDES = [
     },
     speakerNotes: "Goal: Leave the audience with a profound sense of responsibility. As you leave today and return to your IDEs, ask yourself: Are you using AI to expand your mind and think deeper, or are you using it to avoid thinking altogether? The future of Bitcoin depends on our answer. Thank you.",
     goal: "Conclude with the core takeaway of human responsibility."
+  },
+  {
+    title: "Connect",
+    headline: "Connect With Me",
+    subtitle: "Learn what we are doing at OSGuild to preserve open-source integrity.",
+    speakerNotes: "Closing contact details. Encourage everyone to reach out on X or email to learn more, contribute, and join the mission at OSGuild.",
+    goal: "Provide contact details and invite collaboration."
   }
 ];
 
@@ -212,6 +219,7 @@ export function BtcxxSlides() {
                 {slide === 7 && <Slide8Interactive />}
                 {slide === 8 && <Slide9Points points={SLIDES[8].points || []} />}
                 {slide === 9 && <Slide10Interactive quote={SLIDES[9].quote} />}
+                {slide === 10 && <Slide11Connect />}
               </div>
             )}
           
@@ -826,3 +834,69 @@ function Slide10Interactive({ quote }: { quote?: { text: string; author: string 
     </div>
   );
 }
+
+// Slide 11: Connect With Me
+function Slide11Connect() {
+  return (
+    <div className="flex flex-col items-center gap-6 w-full max-w-xl mx-auto">
+      <div className="flex flex-col md:flex-row items-center gap-6 bg-[#161b22] border-[3px] border-black p-6 md:p-8 shadow-[6px_6px_0_0_#000] w-full">
+        {/* Circle Avatar */}
+        <div className="w-28 h-28 sm:w-32 sm:h-32 rounded-full border-[3px] border-black overflow-hidden shadow-[3px_3px_0_0_#000] shrink-0 bg-[#0d1117]">
+          <img 
+            src="/sadiq.jpg" 
+            alt="Sadiq" 
+            className="w-full h-full object-cover select-none pointer-events-none filter brightness-95"
+          />
+        </div>
+
+        {/* Content details */}
+        <div className="flex flex-col gap-4 text-center md:text-left w-full">
+          <div>
+            <h3 className="text-xl sm:text-2xl font-black text-white uppercase font-mono tracking-tight leading-none">
+              Sadiq
+            </h3>
+          </div>
+
+          <div className="flex flex-col gap-2.5 font-mono text-xs text-gray-300">
+            {/* X (Twitter) */}
+            <a 
+              href="https://x.com/rsadiqra" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="flex items-center gap-2 border border-black bg-[#0d1117] p-2 hover:bg-[#161b22] active:translate-x-0.5 active:translate-y-0.5 shadow-[2px_2px_0_0_#000] active:shadow-[1px_1px_0_0_#000] transition-all text-white font-bold group"
+            >
+              <span className="text-[#39d353] font-black shrink-0">X:</span>
+              <span className="truncate group-hover:underline">@rsadiqra</span>
+            </a>
+
+            {/* Email */}
+            <a 
+              href="mailto:sadiq@osguild.dev" 
+              className="flex items-center gap-2 border border-black bg-[#0d1117] p-2 hover:bg-[#161b22] active:translate-x-0.5 active:translate-y-0.5 shadow-[2px_2px_0_0_#000] active:shadow-[1px_1px_0_0_#000] transition-all text-white font-bold group"
+            >
+              <span className="text-[#39d353] font-black shrink-0">EMAIL:</span>
+              <span className="truncate group-hover:underline">sadiq@osguild.dev</span>
+            </a>
+
+            {/* Website */}
+            <a 
+              href="https://osguild.dev" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="flex items-center gap-2 border border-black bg-[#0d1117] p-2 hover:bg-[#161b22] active:translate-x-0.5 active:translate-y-0.5 shadow-[2px_2px_0_0_#000] active:shadow-[1px_1px_0_0_#000] transition-all text-white font-bold group"
+            >
+              <span className="text-[#39d353] font-black shrink-0">WEB:</span>
+              <span className="truncate group-hover:underline">https://osguild.dev</span>
+            </a>
+          </div>
+        </div>
+      </div>
+      
+      {/* Short Subtext / Call-to-action */}
+      <div className="text-center text-xs text-gray-500 font-sans leading-relaxed mt-2 max-w-md">
+        Reach out to learn more about what we are doing to cultivate sovereign developer communities and preserve open-source integrity.
+      </div>
+    </div>
+  );
+}
+
